@@ -262,3 +262,88 @@ document
     //console.log(selectedDate);
     showClasses(selectedDate);
   });
+
+// UPDATE SLIDER TEXT //
+
+// Select the slide element
+const slide = document.querySelector(".feature-slide");
+const headings = [...document.querySelectorAll(".feature-heading")];
+
+let transformValue;
+
+const updateTransformValue = function () {
+  let width = window.innerWidth;
+  if (width >= 992) {
+    transformValue = -275;
+  } else {
+    transformValue = -200;
+  }
+};
+
+updateTransformValue();
+
+const updateHeading = function (headingText) {
+  headings.forEach((heading) => {
+    heading.textContent = headingText;
+  });
+};
+
+const observer = new MutationObserver((mutations) => {
+  for (const mutation of mutations) {
+    if (mutation.type === "attributes" && mutation.attributeName === "style") {
+      const translate = slide.attributes.style.textContent.split(" ").at(1);
+      const transformedValue = translate.slice(
+        translate.indexOf("-"),
+        translate.indexOf("p")
+      );
+
+      // Initial (for the 1st slide)
+      if (transformedValue === "")
+        updateHeading(
+          "Experience interactive live yoga classes with a teacher via video."
+        );
+
+      // (for the 2nd slide)
+      if (transformedValue === `${transformValue * 1}`)
+        updateHeading("Access diverse 20/30/60-minute yoga classes throughout the day.");
+
+      // (for the 3rd slide)
+      if (transformedValue === `${transformValue * 2}`)
+        updateHeading(
+          "Start your yoga journey and progress from Novice to Warrior to Yoda."
+        );
+
+      // (for the 4th slide)
+      if (transformedValue === `${transformValue * 3}`)
+        updateHeading(
+          "Stay motivated with streaks and levels to make yoga a habit."
+        );
+
+      // (for the 5th slide)
+      if (transformedValue === `${transformValue * 4}`)
+        updateHeading(
+          "Deepen your understanding through YTT (Yoga Teacher Training)."
+        );
+    
+      // (for the 6th slide)
+      if (transformedValue === `${transformValue * 5}`)
+        updateHeading(
+          "Track your progress on your yoga journey."
+        );
+
+        // (for the 7th slide)
+        if (transformedValue === `${transformValue * 6}`)
+        updateHeading(
+        "Embark on an extraordinary yoga journey with unique experiences at each level."
+        );
+
+        // (for the 8th slide)
+        if (transformedValue === `${transformValue * 7}`)
+        updateHeading(
+        "Customers love our exceptional services."
+        );
+    }
+  }
+});
+
+observer.observe(slide, { attributes: true });
