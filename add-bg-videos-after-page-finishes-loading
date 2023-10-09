@@ -1,0 +1,26 @@
+// Get references to the video container and placeholder image
+const videoContainer = [...document.querySelectorAll('.bg-video-wrapper')];
+const placeholderImage =  [...document.querySelectorAll('.placeholder-image')];
+
+const addBgVideos = (src, img, container) => {
+    // Create the video embed code (replace this with your actual embed code)
+    const videoEmbedCode = `<video class="hero-bg-video" autoplay muted playsinline loop style="object-fit:cover; width:100%; height:100%">
+    <source src=${src} type="video/mp4">
+    </video>`;
+
+    // Add the video embed code to the video container
+    container.innerHTML = videoEmbedCode;
+
+    // Remove the placeholder image
+    if (img) {
+        img.remove();
+    }
+};
+
+
+window.addEventListener('load', function () {
+    // Wait for the page to finish loading
+    videoContainer.forEach((container, i)=>{
+        addBgVideos(container.dataset.src,placeholderImage[i],container);
+    })
+});
