@@ -1,0 +1,51 @@
+const playButtons = document.getElementsByClassName("video-play-btn"),
+  playButtonsArr = Array.from(playButtons),
+  boxImage = Array.from(document.querySelectorAll(".ytt-embed-image")),
+  boxVideoEmbed = Array.from(
+    document.querySelectorAll(".live-on-demand-video-embed")
+  ),
+  playFunctionality = function (e, t, l, y) {
+    const o = new Vimeo.Player(e);
+    (t.style.opacity = "0"),
+      (t.style.display = "none"),
+      (l.style.opacity = "0"),
+      (l.style.display = "none"),
+      (y.style.opacity = "1"),
+      (y.style.display = "block"),
+      o.on("pause", function () {
+        (t.style.opacity = "1"),
+          (t.style.display = "block"),
+          (l.style.opacity = "1"),
+          (l.style.display = "flex"),
+          (y.style.opacity = "0"),
+          (y.style.display = "none");
+      }),
+      o.play();
+  };
+for (let e = 0; e < playButtons.length; e++)
+  playButtons[e].addEventListener("click", function (t) {
+    const videoSrc = playButtons[e].dataset.src;
+    console.log("e=>", e);
+    const iframeStr =
+      "<iframe id=video-" +
+      (e + 1) +
+      ' src="' +
+      videoSrc +
+      '" width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>';
+    var iframeEl = document.createElement("div");
+    iframeEl.setAttribute("class", "vimeo-video-embed w-embed w-iframe");
+    iframeEl.innerHTML = iframeStr;
+    const l = t.target;
+
+    const y = l.previousElementSibling;
+    const elID = "video-" + (e + 1);
+    const vidEl = document.getElementById(elID);
+
+    if (!vidEl) {
+      l.parentNode.appendChild(iframeEl);
+    }
+    const o = l.nextElementSibling;
+    console.log("vidEL", elID, "=", vidEl, "l==", l, " ==>y", y, " ==>o", o);
+
+    playFunctionality(elID, l, y, o);
+  });
