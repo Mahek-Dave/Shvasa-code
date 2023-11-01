@@ -14,6 +14,7 @@ const addPopup = (html) => document.body.insertAdjacentHTML("beforeend", html);
 
 // Add popup after page loads
 window.addEventListener('load', function(){
+    if (iframeAdded === true) return;
     addPopup(iframeHTML);
 });
 
@@ -21,14 +22,16 @@ window.addEventListener('load', function(){
     const allBtns = [...document.querySelectorAll(".free-trial-wrapper")];
     const closeBtn = document.querySelector(".close-signup-popup");
     
-    // display popup
+    // Display popup
     const showPopup = () =>{
-         closeBtn.style.display = "flex";
-         popup = document.querySelector(".signup-popup");
-         popup.style.display = 'flex';
+        if (!(iframeAdded === true)) addPopup(iframeHTML);
+        
+        closeBtn.style.display = "flex";
+        popup = document.querySelector(".signup-popup");
+        popup.style.display = 'flex';
     };
     
-    // hide popup
+    // Hide popup
     const closePopup = () => {
     popup.style.display = 'none';
     closeBtn.style.display = "none";
