@@ -27,9 +27,9 @@
 
   // Display popup
   const showPopup = () => {
-    if (!(iframeAdded === true)) addPopup(iframeHTML);
+    if (!(iframeAdded === false)) addPopup(iframeHTML);
 
-    
+
     mainBody.style.overflow = "hidden";
     closeBtn.style.display = "flex";
     popup = document.querySelector(".signup-popup");
