@@ -21,11 +21,12 @@ window.addEventListener('load', function(){
     // Elements
     const allBtns = [...document.querySelectorAll(".free-trial-wrapper")];
     const closeBtn = document.querySelector(".close-signup-popup");
+    const mainBody = document.querySelector('body');
     
     // Display popup
     const showPopup = () =>{
         if (!(iframeAdded === true)) addPopup(iframeHTML);
-        
+        mainBody.style.overflow = "hidden";
         closeBtn.style.display = "flex";
         popup = document.querySelector(".signup-popup");
         popup.style.display = 'flex';
@@ -35,6 +36,7 @@ window.addEventListener('load', function(){
     const closePopup = () => {
     popup.style.display = 'none';
     closeBtn.style.display = "none";
+    mainBody.style.overflow = "auto";
     }
     
     // Events
