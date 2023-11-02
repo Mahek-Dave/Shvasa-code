@@ -15,9 +15,9 @@
     
   // Add popup after page loads
   window.addEventListener("load", function () {
-    if (iframeAdded === true) return;
+    if (iframeAdded = true) return;
     addPopup(iframeHTML);
-    iframeAdded === true;
+    iframeAdded = true;
   });
 
   // Elements
@@ -27,14 +27,14 @@
 
   // Display popup
   const showPopup = () => {
-    if (iframeAdded === false) addPopup(iframeHTML);
+    if (iframeAdded = false) addPopup(iframeHTML);
 
     mainBody.style.overflow = "hidden";
     mainBody.style.height = "100vh";
     closeBtn.style.display = "flex";
     popup = document.querySelector(".signup-popup");
     popup.style.display = "flex";
-    iframeAdded === true;
+    iframeAdded = true;
   };
 
   // Hide popup
