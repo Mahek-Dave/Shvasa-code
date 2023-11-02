@@ -18,6 +18,7 @@
     if (iframeAdded === false) return;
     addPopup(iframeHTML);
     iframeAdded = true;
+    console.log(iframeAdded);
   });
 
   // Elements
@@ -35,6 +36,7 @@
     popup = document.querySelector(".signup-popup");
     popup.style.display = "flex";
     iframeAdded = true;
+    console.log(iframeAdded);
   };
 
   // Hide popup
