@@ -29,12 +29,14 @@
   const showPopup = () => {
     if (iframeAdded === false) addPopup(iframeHTML);
 
+    else{
     mainBody.style.overflow = "hidden";
     mainBody.style.height = "100vh";
     closeBtn.style.display = "flex";
     popup = document.querySelector(".signup-popup");
     popup.style.display = "flex";
     iframeAdded = true;
+    };
   };
 
   // Hide popup
