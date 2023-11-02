@@ -15,7 +15,7 @@
     
   // Add popup after page loads
   window.addEventListener("load", function () {
-    if (iframeAdded === false) return;
+    if (iframeAdded === true) return;
     addPopup(iframeHTML);
     iframeAdded = true;
     console.log(iframeAdded);
