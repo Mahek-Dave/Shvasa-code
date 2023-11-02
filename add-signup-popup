@@ -12,7 +12,7 @@
   // Add popup to body
   const addPopup = (html) =>
     document.body.insertAdjacentHTML("beforeend", html);
-
+    
   // Add popup after page loads
   window.addEventListener("load", function () {
     if (iframeAdded === true) return;
@@ -22,8 +22,8 @@
 
   // Elements
   const allBtns = [...document.querySelectorAll(".free-trial-wrapper")];
-  // const closeBtn = document.querySelector(".close-signup-popup");
-   const mainBody = document.querySelector(".page-wrapper");
+  //const closeBtn = document.querySelector(".close-signup-popup");
+  const mainBody = document.querySelector(".page-wrapper");
 
   // Display popup
   const showPopup = () => {
@@ -31,6 +31,7 @@
 
 
     mainBody.style.overflow = "hidden";
+    mainBody.style.height = "100vh";
     closeBtn.style.display = "flex";
     popup = document.querySelector(".signup-popup");
     popup.style.display = "flex";
@@ -42,6 +43,7 @@
     popup.style.display = "none";
     closeBtn.style.display = "none";
     mainBody.style.overflow = "auto";
+    mainBody.style.height = "auto";
   };
 
   // Events
@@ -51,11 +53,13 @@
   window.addEventListener("message", function (event) {
     console.log(
       "Message received from the child: " + JSON.stringify(event.data)
-    ); // Message received from child
-    if (event.data?.event === "loggedIn") {
-      window.location =
-        "https://shvasa-staging-web.vercel.app/dashboard?widget=loginpopup&token=" +
-        event.data?.token;
+    ); 
+    
+  // Message received from child
+  if (event.data?.event === "loggedIn") {
+    window.location =
+    "https://shvasa-staging-web.vercel.app/dashboard?widget=loginpopup&token=" +
+     event.data?.token;
     }
   });
 })();
