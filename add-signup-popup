@@ -31,7 +31,7 @@
     if (iframeAdded === false) {addPopup(iframeHTML)};
 
     mainBody.style.overflow = "hidden";
-    mainBody.style.height = "130vh";
+    mainBody.style.height = "100vh";
     closeBtn.style.display = "flex";
     popup = document.querySelector(".signup-popup");
     popup.style.display = "flex";
