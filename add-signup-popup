@@ -7,7 +7,7 @@
   const pageUrl = encodeURIComponent(window.location.href);
 
   // Signup iframe
-  const iframeHTML = `<iframe class="signup-popup" src="https://shvasa-staging-web.vercel.app/widgets?widget=loginPopup&url=${pageUrl}"></iframe>`;
+  const iframeHTML = `<iframe class="signup-popup" src="https://app.shvasa.com/widgets?widget=loginPopup&url=${pageUrl}"></iframe>`;
 
   // Add popup to body
   const addPopup = (html) =>
@@ -59,7 +59,7 @@
   // Message received from child
   if (event.data?.event === "loggedIn") {
     window.location =
-    "https://shvasa-staging-web.vercel.app/dashboard?widget=loginpopup&token=" +
+    "https://app.shvasa.com/dashboard?widget=loginpopup&token=" +
      event.data?.token;
     }
   });
