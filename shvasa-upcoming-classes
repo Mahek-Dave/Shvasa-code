@@ -70,7 +70,7 @@ const fetchClassesData = function (selectedDate) {
     .then((response) => response.json())
     .then((data) => {
       classesData = data.body;
-      //console.log(classesData);
+      console.log(classesData);
       showClasses(selectedDate);
     })
     .catch((error) => {
