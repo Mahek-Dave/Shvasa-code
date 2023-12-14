@@ -119,7 +119,7 @@ const showClasses = function () {
                       <div class="upcoming-class-teaching-hours">100 hours of teaching</div>
                   </div>
               </div>
-          </div><a href="https://app.shvasa.com/book-class?classId=${item?.id}&teacher=${item?.teacherInfo?.name}&time=${item?.classDateTime}${urlParanew}" class="upcoming-class-book-btn-2 w-button">Book Class</a>
+          </div><a href="https://app.shvasa.com/book-class?classId=${item?.id}&teacher=${item?.teacherInfo?.name}&time=${item?.classDateTime}&${urlParanew}" class="upcoming-class-book-btn-2 w-button">Book Class</a>
       </div>
   </div>`;
     // Add card to the container
