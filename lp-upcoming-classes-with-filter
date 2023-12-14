@@ -1,0 +1,130 @@
+// SHOW UPCOMING CLASSES //
+
+// currentDate
+const today = new Date();
+
+let classesData;
+
+// Fetch classes Data
+const tillDate = new Date();
+tillDate.setDate(tillDate.getDate() + 5);
+const authToken =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY4Y2FiN2UyY2ZmNDE1MmQ4YjZkMTciLCJlbWFpbCI6ImFkbWluQHNodmFzYS5jb20iLCJyb2xlIjpbMjA0NV0sImlhdCI6MTY3ODM1NzMxMn0.TfViPmCNEGSmaI6g19eCapva0y7kTEnaee_AMSrEdhU";
+
+const url =
+  "https://services.shvasa.com/api/product/lp-classes?limit=15&outcomes=63b7aa58cc81736d97110eaa,63b7aa58cc81736d97110eb7,63b7aa58cc81736d97110eb8,63b7aa58cc81736d97110ec1";
+
+const headers = {
+  "Content-Type": "application/json",
+  Authorization: `token ${authToken}`,
+};
+
+const body = {
+  fromDate: today,
+  tillDate: tillDate,
+};
+
+const fetchClassesData = function () {
+  fetch(url, {
+    method: "GET",
+    headers: headers,
+    //body: JSON.stringify(body),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      classesData = data.body;
+      console.log(classesData);
+      showClasses();
+    })
+    .catch((error) => {
+      console.error("Error fetching class data:", error);
+    });
+};
+
+fetchClassesData();
+
+//Month Array
+const allMonths = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+// Fetch Classes and display them
+const showClasses = function () {
+  const classesContainer = document.querySelector(".tab-content-wrapper");
+  let html;
+  classesContainer.textContent = "";
+  classesData?.forEach((item, i) => {
+    if (i > 8) return;
+    //update Class details
+    const classDate = new Date(item?.classDateTime);
+    const teacherName = item.teacherInfo.name.split(" ").at(0);
+    const date = classDate.getDate();
+    const month = allMonths.at(Number(classDate.getMonth())).slice(0, 3);
+    const timeZone = `${classDate}`
+      .slice(`${classDate}`.indexOf("(") + 1)
+      .split(" ")
+      .map((value) => value.at(0))
+      .join("");
+    const hours = `${classDate.getHours()}`.padStart(2, 0);
+    const minutes = `${classDate.getMinutes()}`.padEnd(2, 0);
+
+    // HTML Card
+    html = `<div class="upcoming-class-card-2">
+      <div class="upcoming-class-content-2">
+          <div class="upcoming-class-date-wrapper">
+              <div class="upcoming-class-block-date">${date}</div>
+              <div class="upcoming-class-block-month">${month}</div>
+          </div>
+          <div class="upcoming-classes-details-2">
+              <div class="upcoming-class-name-2">${item?.name}</div>
+              <div class="upcoming-class-time-wrapper-2"><img
+                      src="https://assets-global.website-files.com/60e7f6b5ecd3ae8e0c125cd7/657a834ec8573a4e444e58ab_clas-time-icon.svg"
+                      loading="lazy" alt="" class="upcoming-class-time-icon">
+                  <div class="upcoming-class-time-2">${hours}:${minutes}</div>
+                  <div class="upcoming-class-timezone-2">${timeZone}</div>
+              </div>
+          </div>
+      </div>
+      <div class="upcoming-class-card-divider"></div>
+      <div class="upcoming-class-bottom-row">
+          <div class="upcoming-class-teacher-details-container">
+              <figure class="upcoming-class-teacher-image-wrapper-2"><img alt="" loading="lazy"
+                      src="${item?.teacherInfo.imageURL.thumbNailImages}"
+                      class="upcoming-class-teacher-image-2"></figure>
+              <div class="upcoming-classes-details-2">
+                  <div class="upcoming-class-teacher-details-wrapper">
+                      <div class="upcoming-class-teacher-name-rating">
+                          <div class="upcoming-class-teacher-name">${teacherName}</div>
+                          <div class="upcoming-class-rating-container">
+                              <div class="upcoming-class-rating-wrapper">
+                                  <div class="upcoming-class-rating">${item?.teacherInfo.avgRating}</div>
+                                  <div class="upcoming-class-star-wrapper"><img
+                                          src="https://assets-global.website-files.com/60e7f6b5ecd3ae8e0c125cd7/657a812afc1841e163a23d3d_Vectors-Wrapper.svg"
+                                          loading="lazy" width="10.514602661132812" height="10" alt=""
+                                          class="vectors-wrapper-15"></div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="upcoming-class-teaching-hours">100 hours of teaching</div>
+                  </div>
+              </div>
+          </div><a href="https://app.shvasa.com/book-class?classId=${item?.id}&teacher=${item?.teacherInfo?.name}&time=${item?.classDateTime}${urlParanew}" class="upcoming-class-book-btn-2 w-button">Book Class</a>
+      </div>
+  </div>`;
+    // Add card to the container
+    classesContainer.insertAdjacentHTML("beforeend", html);
+  });
+};
+
+showClasses();
