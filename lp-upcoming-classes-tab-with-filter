@@ -49,7 +49,7 @@ tillDate.setDate(tillDate.getDate() + 5);
 const authToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY4Y2FiN2UyY2ZmNDE1MmQ4YjZkMTciLCJlbWFpbCI6ImFkbWluQHNodmFzYS5jb20iLCJyb2xlIjpbMjA0NV0sImlhdCI6MTY3ODM1NzMxMn0.TfViPmCNEGSmaI6g19eCapva0y7kTEnaee_AMSrEdhU";
 
-const url = "https://services.shvasa.com/api/product/lp-classes?limit=50&outcomes=63b7aa58cc81736d97110eaa,63b7aa58cc81736d97110eb7,63b7aa58cc81736d97110eb8,63b7aa58cc81736d97110ec1";
+const url = "https://services.shvasa.com/api/product/lp-classes?limit=50&outcomes=63b7aa58cc81736d97110eb7,63b7aa58cc81736d97110eb8,63b7aa58cc81736d97110ec1";
 
 const headers = {
   "Content-Type": "application/json",
