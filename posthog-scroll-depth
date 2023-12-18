@@ -1,0 +1,59 @@
+    let maxPercentage = 0
+    let maxPixels = 0
+    let scrollHeight =0;
+    let currentPage = 0;
+
+const addAnalyticsEvent = async (eventName, data) => {
+    console.info("addAnalyticsEvent event ", eventName, data)
+    const _dataLayer = window['dataLayer'];
+    if (_dataLayer) {
+        _dataLayer.push({ ecommerce: null });
+        _dataLayer.push({
+            event: eventName,
+            ...data,
+        })
+    }
+
+    try {
+         setTimeout(() => {
+            const res = window['posthog'] && window['posthog'].capture(eventName, data);
+            console.info("posthog caputured", res)
+        }, 100);
+    } catch (err) {
+        console.error("error while posthog event", err, err?.stack)
+    }
+}
+
+    const trackScrollDepth = () => {
+        const last_scroll_percentage = Math.min(100, ((window.innerHeight + window.pageYOffset) / document.body.offsetHeight) * 100)
+        console.log("leftPage event.....", 'maxPercentage.current', maxPercentage);
+
+        addAnalyticsEvent('leftPage', {
+            'max_scroll_percentage': maxPercentage,
+            'max_scroll_pixels': maxPixels,
+            'last_scroll_percentage': last_scroll_percentage,
+            'last_scroll_pixels': window.innerHeight + window.pageYOffset,
+            'scrolled': maxPixels > 0,
+            'page': currentPage
+        });
+        maxPixels = 0
+        maxPercentage = 0
+    }
+function handleScroll() {
+            const lastPercentage = Math.min(100, ((window.innerHeight + window.pageYOffset) / document.body.offsetHeight) * 100)
+            const lastPixels = window.innerHeight + window.pageYOffset
+            if (lastPercentage > maxPercentage.current) {
+                maxPercentage.current = lastPercentage
+            }
+            if (lastPixels > maxPixels.current) {
+                maxPixels.current = lastPixels
+                if (scrollHeight.current < document.documentElement.scrollHeight) {
+                    scrollHeight.current = document.documentElement.scrollHeight;
+                    currentPage.current = currentPage.current + 1;
+                    console.log("current page index updated....", currentPage.current);
+                }
+            }
+        }
+
+        window.addEventListener('beforeunload', trackScrollDepth)
+        window.addEventListener('scroll', handleScroll)
