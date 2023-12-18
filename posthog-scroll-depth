@@ -46,12 +46,13 @@ function handleScroll() {
             if (lastPercentage > maxPercentage) {
                 maxPercentage = lastPercentage
             }
-            if (lastPixels > maxPixels.current) {
+            if (lastPixels > maxPixels) {
                 maxPixels = lastPixels
                 if (scrollHeight < document.documentElement.scrollHeight) {
                     scrollHeight = document.documentElement.scrollHeight;
                     currentPage = currentPage + 1;
                     console.log("current page index updated....", currentPage);
+trackScrollDepth();
                 }
             }} catch(e){console.log("Error scroll", e, e.stack)}
         }
