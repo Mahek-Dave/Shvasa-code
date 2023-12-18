@@ -1,4 +1,4 @@
-    let maxPercentage = 0
+let maxPercentage = 0
     let maxPixels = 0
     let scrollHeight =0;
     let currentPage = 0;
@@ -40,19 +40,20 @@ const addAnalyticsEvent = async (eventName, data) => {
         maxPercentage = 0
     }
 function handleScroll() {
+      try{
             const lastPercentage = Math.min(100, ((window.innerHeight + window.pageYOffset) / document.body.offsetHeight) * 100)
             const lastPixels = window.innerHeight + window.pageYOffset
-            if (lastPercentage > maxPercentage.current) {
-                maxPercentage.current = lastPercentage
+            if (lastPercentage > maxPercentage) {
+                maxPercentage = lastPercentage
             }
             if (lastPixels > maxPixels.current) {
-                maxPixels.current = lastPixels
-                if (scrollHeight.current < document.documentElement.scrollHeight) {
-                    scrollHeight.current = document.documentElement.scrollHeight;
-                    currentPage.current = currentPage.current + 1;
-                    console.log("current page index updated....", currentPage.current);
+                maxPixels = lastPixels
+                if (scrollHeight < document.documentElement.scrollHeight) {
+                    scrollHeight = document.documentElement.scrollHeight;
+                    currentPage = currentPage + 1;
+                    console.log("current page index updated....", currentPage);
                 }
-            }
+            }} catch(e){console.log("Error scroll", e, e.stack)}
         }
 
         window.addEventListener('beforeunload', trackScrollDepth)
