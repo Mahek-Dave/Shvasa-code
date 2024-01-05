@@ -64,14 +64,19 @@ const forEachArray = async function (array) {
   });
 };
 
+const initializeWebflowSlider = function () {
+  // Initialize Webflow slider after adding slides
+  Webflow.require('slider').redraw();
+};
+
 const getResult = async () => {
   try {
     // Clear the container before inserting new content
     sliderContainer.innerHTML = "";
     const mergedArray = await generateSingleArray();
     await forEachArray(mergedArray);
-    // Initialize Webflow slider after adding slides
-    Webflow.require('slider').redraw();
+    // Set a timeout to ensure that the slides are added before initializing the slider
+    setTimeout(initializeWebflowSlider, 0);
   } catch (error) {
     console.error("Error in getting result:", error);
   }
