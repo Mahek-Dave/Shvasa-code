@@ -2,86 +2,74 @@ let sliderData;
 const sliderContainer = document.querySelector('.lp-01-teacher-mask');
 
 const teacherUrl = "https://services.truyoga.in/api/counselling/consultant/teacher";
-
 const fetchDetails = async function (url) {
-  try {
-    const response = await fetch(url, {
-      method: "GET",
-    });
-    const data = await response.json();
-    sliderData = data.body;
-    console.log(data);
-    return data;
-  } catch (error) {
-    console.error("There is some error while fetching slider data", error);
-    throw error;
-  }
+  return fetch(url, {
+    method: "GET",
+  })
+    .then((respose) => respose.json())
+    .then((data) => {
+        sliderData = data.body;
+        //console.log(data);
+    })
+    .catch((error) =>
+      console.log("There is some error while fetching slider data", error)
+    );
 };
 
-const constructArray = function () {
-  const dataWithCertification = sliderData.filter(data => data?.certification.length > 0);
-  const dataWithoutCertification = sliderData.filter(data => data?.certification.length === 0);
-  return dataWithCertification.concat(dataWithoutCertification);
+const consructArray = function(){
+    const dataWithCertification = sliderData.filter(data=> data?.certification.length > 0);
+    const dataWithoutCertification = sliderData.filter(data=> data?.certification.length === 0);
+    return dataWithCertification.concat(dataWithoutCertification);
+}
+
+const generateSingleArray  = async function(){
+    await fetchDetails(teacherUrl);
+    const mergedArray = consructArray();
+    return mergedArray;
 };
 
-const generateSingleArray = async function () {
-  await fetchDetails(teacherUrl);
-  const mergedArray = constructArray();
-  return mergedArray;
-};
-
-const forEachArray = async function (array) {
-  array.forEach((data, i, arr) => {
-    const html = `<div class="lp-01-teacher-slide w-slide" aria-label="${i+1} of ${arr.length}" role="group"
-    style="transform: translateX(0px); opacity: 1; transition: transform 500ms ease 0s;">
-    <div class="lp-01-teacher-slider-components-wrapper">
-        <div class="lp-teacher-slider-image-wrapper"><img
-                src=${data?.imageURL?.fullSizeImages}
-                loading="lazy" alt="" class="lp-teacher-slider-image"></div>
-        <div class="lp-teachers-text-wrapper">
-            <div class="lp-01-teacher-name-designation-wrapper">
-                <div class="sakshi-sharma-principal-trainer"><span class="text-1">${data?.name}<br></span><span
-                        class="lp-01-para-1">${data?.certification[0] === undefined ? "" : data?.certification[0]}</span></div>
-            </div>
-            <div class="lp-01-teacher-rating-2">
-                <div class="students-coached">8 Years of experience</div><img
-                    src="https://assets-global.website-files.com/60e7f6b5ecd3ae8e0c125cd7/6596dd631273477ad5595a25_%E2%AD%90.webp"
-                    loading="lazy" alt="" class="lp-01-teacher-rating-star">
-                <div>${data.avgRating} stars</div>
-            </div>
-            <div class="lp-01-teacher-slide-speciality-text-wrappper">
-                <div class="students-coached">8 Years of experience</div>
-                <div>${data.style[0]}</div>
-            </div>
-            <div class="lp-01-teacher-slide-bottom-text-wrappper">
-                <div class="students-coached">8 Years of experience</div>
-                <div>8 Years of experience</div>
+const forEachArray = async function(array){
+    array.forEach((data,i,arr)=>{
+        const html = `<div class="lp-01-teacher-slide w-slide" aria-label="${i+1} of ${arr.length}" role="group"
+        style="transform: translateX(0px); opacity: 1; transition: transform 500ms ease 0s;">
+        <div class="lp-01-teacher-slider-components-wrapper">
+            <div class="lp-teacher-slider-image-wrapper"><img
+                    src=${data?.imageURL?.fullSizeImages}
+                    loading="lazy" alt="" class="lp-teacher-slider-image"></div>
+            <div class="lp-teachers-text-wrapper">
+                <div class="lp-01-teacher-name-designation-wrapper">
+                <div class="lp-01-teacher-name-wrapper">
+                    <div class="text-1">${data?.name}</div>
+                    <div class="lp-01-para-1">${data?.certification}</div>
+                </div>
+                </div>
+                <div class="lp-01-teacher-rating-2">
+                    <div class="students-coached">8 Years of experience</div><img
+                        src="https://assets-global.website-files.com/60e7f6b5ecd3ae8e0c125cd7/6596dd631273477ad5595a25_%E2%AD%90.webp"
+                        loading="lazy" alt="" class="lp-01-teacher-rating-star">
+                    <div>${data.avgRating} stars</div>
+                </div>
+                <div class="lp-01-teacher-slide-speciality-text-wrappper">
+                    <div class="students-coached">8 Years of experience</div>
+                    <div>${data.style.join(",")}</div>
+                </div>
+                <div class="lp-01-teacher-slide-bottom-text-wrappper">
+                    <div class="students-coached">8 Years of experience</div>
+                    <div>8 Years of experience</div>
+                </div>
             </div>
         </div>
-    </div>
-</div>`;
-    sliderContainer.insertAdjacentHTML("afterbegin", html);
-  });
-};
-
-const initializeWebflowSlider = function () {
-  // Initialize Webflow slider after adding slides
-  Webflow.require('slider').redraw();
-};
+    </div>`;
+    sliderContainer.insertAdjacentHTML("beforeend",html)
+    })
+}
 
 const getResult = async () => {
-  try {
-    // Clear the container before inserting new content
-    sliderContainer.innerHTML = "";
+    //sliderContainer.textContent = "";
     const mergedArray = await generateSingleArray();
     await forEachArray(mergedArray);
-    // Set a timeout to ensure that the slides are added before initializing the slider
-    setTimeout(initializeWebflowSlider, 0);
-  } catch (error) {
-    console.error("Error in getting result:", error);
-  }
-
+  };
   
-};
+  getResult()
 
-getResult();
+
