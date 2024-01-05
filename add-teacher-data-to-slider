@@ -42,7 +42,7 @@ const forEachArray = async function (array) {
             <div class="lp-01-teacher-name-designation-wrapper">
                     <div class="lp-01-teacher-name-wrapper">
                     <div class="text-1">${data?.name}</div>
-                    <div class="lp-01-para-1">${data?.certification[0] === undefined ? "" : data?.certification[0]}</div>
+                    <div class="lp-01-para-1">${data?.certification[0] || ""}</div>
                 </div>
             </div>
             <div class="lp-01-teacher-rating-2">
