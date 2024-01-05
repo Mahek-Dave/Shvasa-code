@@ -3,6 +3,7 @@ const sliderContainer = document.querySelector('.lp-01-teacher-mask');
 
 const teacherUrl = "https://services.truyoga.in/api/counselling/consultant/teacher";
 
+// To get all teachers data
 const fetchDetails = async function (url) {
   try {
     const response = await fetch(url, {
@@ -18,16 +19,23 @@ const fetchDetails = async function (url) {
   }
 };
 
+// To create a single filter array
 const constructArray = function () {
   const dataWithCertification = sliderData.filter(data => data?.certification.length > 0);
   const dataWithoutCertification = sliderData.filter(data => data?.certification.length === 0);
   return dataWithCertification.concat(dataWithoutCertification);
 };
 
+// Function returns filtered array
 const generateSingleArray = async function () {
   await fetchDetails(teacherUrl);
   const mergedArray = constructArray();
   return mergedArray;
+};
+
+// Initialize Webflow slider after adding slides
+const initializeWebflowSlider = function () {
+  Webflow.require('slider').redraw();
 };
 
 const forEachArray = async function (array) {
@@ -66,12 +74,8 @@ const forEachArray = async function (array) {
   });
 };
 
-const initializeWebflowSlider = function () {
-  // Initialize Webflow slider after adding slides
-  Webflow.require('slider').redraw();
-};
 
-const getResult = async () => {
+const generateSlides = async () => {
   try {
     // Clear the container before inserting new content
     sliderContainer.innerHTML = "";
@@ -86,4 +90,4 @@ const getResult = async () => {
   
 };
 
-getResult();
+generateSlides();
