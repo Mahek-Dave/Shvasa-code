@@ -82,7 +82,7 @@ const generateSlides = async () => {
     const mergedArray = await generateSingleArray();
     await forEachArray(mergedArray);
     // Set a timeout to ensure that the slides are added before initializing the slider
-    setTimeout(initializeWebflowSlider, 100);
+    setTimeout(initializeWebflowSlider, 1500);
   } catch (error) {
     console.error("Error in getting result:", error);
   }
