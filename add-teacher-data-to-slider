@@ -110,3 +110,33 @@ const generateSlides = async () => {
 };
 
 generateSlides();
+
+// Target element you want to observe
+const targetElement = document.getElementById('teacher-slides');
+
+// Options for the Intersection Observer
+const options = {
+  root: null, // Use the viewport as the root
+  rootMargin: '0px', // No margin
+  threshold: 0.5, // Trigger when 50% of the element is visible
+};
+
+// Callback function to be executed when the intersection changes
+const callback = (entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Your code to be triggered when the section is about to be in view
+      console.log('Section is about to be in view');
+      window.dispatchEvent(new Event("resize"));
+      
+      // Remove the observer if you only want to trigger it once
+      //observer.unobserve(entry.target);
+    }
+  });
+};
+
+// Create an Intersection Observer with the callback and options
+const observer = new IntersectionObserver(callback, options);
+
+// Start observing the target element
+observer.observe(targetElement);
