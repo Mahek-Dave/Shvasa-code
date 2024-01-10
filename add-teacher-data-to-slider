@@ -48,12 +48,8 @@ const forEachArray = async function (array) {
     const expertise = data.style[0].toLowerCase();
     const expertiseArr = expertise.split("_");
     const expertiseStr = expertiseArr.forEach((word) => {
-      let output;
-      //const rrr = w.at(0);
-      //const capword = w.at(0).toUpperCase();
-      output = word.replace(word.at(0), word.at(0).toUpperCase());
-      console.log("%cExpertice", "font-size:30px; color:green", output);
-    });
+           word.replace(word.at(0), word.at(0).toUpperCase());
+    }).join(" ");
 
     const html = `<div class="lp-01-teacher-slide w-slide" aria-label="${
       i + 1
