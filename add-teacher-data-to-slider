@@ -47,12 +47,15 @@ const forEachArray = async function (array) {
   array.forEach((data, i, arr) => {
     const expertise = data.style[0].toLowerCase();
     const expertiseArr = expertise.split("_");
-    console.log(expertiseArr);
-    const expertiseStr = expertiseArr.forEach((word) => {
-      const firstLetter = word.at(0);
-      const firstLetterCap = firstLetter.toUpperCase();
-      word.replace(firstLetter, firstLetterCap);
-    });
+    //console.log(expertiseArr);
+    const expertiseStr = expertiseArr
+      .map((word) => {
+        //const firstLetter = word.at(0);
+        //const firstLetterCap = firstLetter.toUpperCase();
+        const updatedWord = word.replace(word.at(0), word.at(0).toUpperCase());
+        return updatedWord;
+      })
+      .join(" ");
     console.log("%c output", "color:red; font-weight:bold ", expertiseStr);
 
     const html = `<div class="lp-01-teacher-slide w-slide" aria-label="${
@@ -107,4 +110,3 @@ const generateSlides = async () => {
 };
 
 generateSlides();
-
