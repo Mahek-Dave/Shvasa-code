@@ -47,11 +47,11 @@ const forEachArray = async function (array) {
   array.forEach((data, i, arr) => {
     const expertise = data.style[0].toLowerCase();
     const expertiseArr = expertise.split("_");
-    const expertiseStr = expertiseArr
-      .forEach((word) => {
-        word.replace(word.at(0), word.at(0).toUpperCase());
-      })
-      console.log(expertiseStr);
+    const expertiseStr = expertiseArr.forEach((word) => {
+      const output = word.replace(word.at(0), word.at(0).toUpperCase());
+      return output;
+    });
+    console.log(expertiseStr);
 
     const html = `<div class="lp-01-teacher-slide w-slide" aria-label="${
       i + 1
