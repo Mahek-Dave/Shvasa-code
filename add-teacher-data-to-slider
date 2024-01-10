@@ -46,8 +46,18 @@ const initializeWebflowSlider = function () {
 const forEachArray = async function (array) {
   array.forEach((data, i, arr) => {
     const expertise = data.style[0].toLowerCase();
-    const expertiseStr = expertise.split(expertise, expertise.indexOf('_'));
-    console.log("%cExpertice", "font-size:30px; color:green", expertiseStr);
+    const expertiseArr = expertise.split(expertise, expertise.indexOf("_"));
+    const expertiseStr = expertiseArr.forEach(word => {
+      let output;
+      //const rrr = w.at(0);
+      //const capword = w.at(0).toUpperCase();
+      output = word.replace(word.at(0),word.at(0).toUpperCase())
+      console.log(
+        "%cExpertice",
+        "font-size:30px; color:green",
+        output
+      );})
+
     const html = `<div class="lp-01-teacher-slide w-slide" aria-label="${
       i + 1
     } of ${arr.length}" role="group"
