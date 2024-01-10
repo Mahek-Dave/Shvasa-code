@@ -46,7 +46,7 @@ const initializeWebflowSlider = function () {
 const forEachArray = async function (array) {
   array.forEach((data, i, arr) => {
     const expertise = data.style[0].toLowerCase();
-    const expertiseStr = expertise.split(expertise.indexOf("_"));
+    const expertiseStr = expertise.split(expertise, expertise.indexOf('_'));
     console.log("%cExpertice", "font-size:30px; color:green", expertiseStr);
     const html = `<div class="lp-01-teacher-slide w-slide" aria-label="${
       i + 1
