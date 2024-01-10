@@ -51,7 +51,7 @@ const forEachArray = async function (array) {
       const output = word.replace(word.at(0), word.at(0).toUpperCase());
       return output;
     });
-    console.log(expertiseStr);
+    console.log("%c output","color:red; font-weight:bold ",expertiseStr);
 
     const html = `<div class="lp-01-teacher-slide w-slide" aria-label="${
       i + 1
