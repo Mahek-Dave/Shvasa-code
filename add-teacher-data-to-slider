@@ -91,7 +91,7 @@ const generateSlides = async () => {
     await forEachArray(mergedArray);
     // Set a timeout to ensure that the slides are added before initializing the slider
     // setTimeout(initializeWebflowSlider, 100);
-    setTimeout(window.dispatchEvent(new Event("resize")), 1000);
+    setTimeout(window.dispatchEvent(new Event("resize")), 5000);
   } catch (error) {
     console.error("Error in getting result:", error);
   }
