@@ -47,11 +47,11 @@ const forEachArray = async function (array) {
   array.forEach((data, i, arr) => {
     const expertise = data.style[0].toLowerCase();
     const expertiseArr = expertise.split("_");
+    console.log(expertiseArr);
     const expertiseStr = expertiseArr.forEach((word) => {
       const firstLetter = word.at(0);
-      const firstLetterCap = firstLetter.toUpperCase(); 
+      const firstLetterCap = firstLetter.toUpperCase();
       word.replace(firstLetter, firstLetterCap);
-      return word;
     });
     console.log("%c output", "color:red; font-weight:bold ", expertiseStr);
 
@@ -107,3 +107,4 @@ const generateSlides = async () => {
 };
 
 generateSlides();
+
