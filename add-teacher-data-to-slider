@@ -45,8 +45,8 @@ const initializeWebflowSlider = function () {
 
 const forEachArray = async function (array) {
   array.forEach((data, i, arr) => {
-    const expertise = data.style[0];
-    console.log("%cExpertice", "font-size:30px; color:blue", expertise);
+    const expertise = data.style[0].toLowerCase();
+    console.log("%cExpertice", "font-size:30px", "color:green", expertise);
     const html = `<div class="lp-01-teacher-slide w-slide" aria-label="${
       i + 1
     } of ${arr.length}" role="group"
