@@ -80,7 +80,7 @@ const forEachArray = async function (array) {
             </div>
             <div class="lp-01-teacher-slide-speciality-text-wrappper">
                 <div class="students-coached">8 Years of experience</div>
-                <div>${data.style[0]}</div>
+                <div>${expertiseStr}</div>
             </div>
             <div class="lp-01-teacher-slide-bottom-text-wrappper">
                 <div class="students-coached">8 Years of experience</div>
