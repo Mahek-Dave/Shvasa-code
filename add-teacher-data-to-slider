@@ -2,7 +2,7 @@ let sliderData;
 const sliderContainer = document.querySelector(".lp-01-teacher-mask");
 
 const teacherUrl =
-  "https://services.truyoga.in/api/counselling/consultant/teacher";
+  "https://services.shvasa.com/api/counselling/consultant/teacher";
 
 // To get all teachers data
 const fetchDetails = async function (url) {
