@@ -45,6 +45,7 @@ const initializeWebflowSlider = function () {
 
 const forEachArray = async function (array) {
   array.forEach((data, i, arr) => {
+    if (data?.name === "Jiraiya Sensei") return;
     const expertise = data.style[0].toLowerCase();
     const expertiseArr = expertise.split("_");
     //console.log(expertiseArr);
