@@ -635,4 +635,3 @@ const setField = function (time_zone) {
 
   clickOnSelectedElement(selectedElement);
 };
-setField();
