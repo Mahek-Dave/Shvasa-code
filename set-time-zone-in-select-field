@@ -610,9 +610,14 @@ const clickOnSelectedElement = function (element) {
   element.selected = true;
 };
 
-const setField = function (time_zone) {
+const setField = async function () {
   let selectedElement;
-  const timezone = time_zone;
+  let timezone;
+  const timezoneFromExtreamIP = await fetch(
+    'https://extreme-ip-lookup.com/json/?key=2R3cffV00WVwfx3gbVPo'
+  )
+    .then(resp => resp.json())
+    .then(resp => (timezone = resp.timezone));
   const timezoneArr = Array.from(timezoneContainer.children);
   const result = timezoneArr.find(opt => opt.value === timezone);
 
@@ -624,14 +629,21 @@ const setField = function (time_zone) {
       selectedElement = document.querySelector(
         `#Timezone option[value="${timezoneNew}"]`
       );
-      console.log('%c Case undefined', 'color: blue; font-size: 1rem; font-weight:600');
+      console.log(
+        '%c Case undefined',
+        'color: blue; font-size: 1rem; font-weight:600'
+      );
       break;
 
     default:
       selectedElement = result;
-      console.log('%c Case default', 'color: green; font-size: 1rem; font-weight:600');
+      console.log(
+        '%c Case default',
+        'color: green; font-size: 1rem; font-weight:600'
+      );
       break;
   }
 
   clickOnSelectedElement(selectedElement);
 };
+setField();
