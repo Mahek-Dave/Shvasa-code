@@ -1,0 +1,9 @@
+const getTimezone = function () {
+  const date = `new Date()`;
+  const timezone = date
+    .slice(date.indexOf('(') + 1, date.indexOf(')'))
+    .split(' ')
+    .map(word => word.at(0))
+    .join('');
+  return timezone;
+};
