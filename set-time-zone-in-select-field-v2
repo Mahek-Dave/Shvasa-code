@@ -1,0 +1,75 @@
+const getTimezone = function () {
+  const date = `${new Date()}`;
+  const timezoneInitial = date
+    .slice(date.indexOf("(") + 1, date.indexOf(")"))
+    .split(" ")
+    .map((word) => word.at(0))
+    .join("");
+  const timezone = date.slice(date.indexOf("(") + 1, date.indexOf(")"));
+  console.log([timezone, timezoneInitial]);
+  return [timezone, timezoneInitial];
+};
+
+const timezoneContainer = document.querySelector(
+  "select[data-name = Timezone]"
+);
+
+const allOptions = `<Option value='Eastern Standard Time'>Eastern Standard Time (EST)</Option>
+<Option value='Central Standard Time'>Central Standard Time (CST)</Option>
+<Option value='Pacific Standard Time'>Pacific Standard Time (PST)</Option>
+<Option value='Pacific Daylight Time'>Pacific Daylight Time (PDT)</Option>
+<Option value='Mountain Standard Time'>Mountain Standard Time (MST)</Option>
+<Option value='Gulf Standard Time'>Gulf Standard Time (GST)</Option>
+<Option value='Atlantic Standard Time'>Atlantic Standard Time (AST)</Option>
+<Option value='India Standard Time'>India Standard Time (IST)</Option>
+<Option value='Other'>Other</Option>
+`;
+
+timezoneContainer.insertAdjacentHTML("afterbegin", allOptions);
+
+const clickOnSelectedElement = function (element) {
+  element.selected = true;
+};
+
+const setField = function () {
+  let selectedElement;
+  const timezone = `${getTimezone()[0]}`;
+  const timezoneArr = Array.from(timezoneContainer.children);
+  const result = timezoneArr.find((opt) => opt.value === timezone);
+
+  switch (result) {
+    case undefined:
+      const timezoneNew = getTimezone()[0];
+      const timezoneInitial = getTimezone()[1];
+      console.log(timezone, timezoneInitial);
+      html = `<option value='${timezoneNew}'>${timezoneNew} (${timezoneInitial})</option>`;
+      timezoneContainer.insertAdjacentHTML("afterbegin", html);
+      selectedElement = document.querySelector(
+        `#Timezone option[value="${timezoneNew}"]`
+      );
+      console.log(
+        "%c Case undefined",
+        "color: blue; font-size: 1rem; font-weight:600"
+      );
+      break;
+
+    default:
+      selectedElement = result;
+      console.log(
+        "%c Case default",
+        "color: green; font-size: 1rem; font-weight:600"
+      );
+      break;
+  }
+  clickOnSelectedElement(selectedElement);
+
+  timezoneContainer.addEventListener("click", function () {
+    if (!(this.value === "Other")) return;
+
+    this.removeAttribute("required");
+
+    const otherField = document.querySelector("#other");
+    otherField.style.display = "block";
+  });
+};
+setField();
