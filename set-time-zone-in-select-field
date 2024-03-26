@@ -20,7 +20,7 @@ const allOptions = `<Option value='Eastern Standard Time'>Eastern Standard Time 
 <Option value='Mountain Standard Time'>Mountain Standard Time (MST)</Option>
 <Option value='Gulf Standard Time'>Gulf Standard Time (GST)</Option>
 <Option value='Atlantic Standard Time'>Atlantic Standard Time (AST)</Option>
-<Option value='Indian Standard Time'>Indian Standard Time (IST)</Option>
+<Option value='India Standard Time'>India Standard Time (IST)</Option>
 <Option value='Other'>Other</Option>
 `;
 
@@ -33,9 +33,7 @@ const clickOnSelectedElement = function (element) {
 const setField = async function () {
   let selectedElement;
   let timezone;
-  await fetch(
-    "https://extreme-ip-lookup.com/json/?key=2R3cffV00WVwfx3gbVPo"
-  )
+  await fetch("https://extreme-ip-lookup.com/json/?key=2R3cffV00WVwfx3gbVPo")
     .then((resp) => resp.json())
     .then((resp) => (timezone = resp.timezone));
   const timezoneArr = Array.from(timezoneContainer.children);
