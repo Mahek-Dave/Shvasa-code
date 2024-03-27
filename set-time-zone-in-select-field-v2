@@ -75,7 +75,6 @@ const setField = function () {
     this.removeAttribute("required");
     otherField.setAttribute("required", true);
     otherField.style.display = "block";
-    clickOnSelectedElement(this);
   });
 };
 setField();
