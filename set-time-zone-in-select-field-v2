@@ -63,7 +63,7 @@ const setField = function () {
   }
   clickOnSelectedElement(selectedElement);
 
-  timezoneContainer.addEventListener("click", function () {
+  timezoneContainer.addEventListener("change", function () {
     const otherField = document.querySelector("#other");
     if (!(this.value === "Other")) {
       otherField.style.display = "none";
