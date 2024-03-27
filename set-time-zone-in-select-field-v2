@@ -63,13 +63,13 @@ const setField = function () {
   }
   clickOnSelectedElement(selectedElement);
 
-  timezoneContainer.addEventListener("click", function () {
+  timezoneContainer.addEventListener("focus", function () {
     if (!(this.value === "Other")) return;
 
     this.removeAttribute("required");
 
     const otherField = document.querySelector("#other");
-    otherField.setAttribute("required",true);
+    otherField.setAttribute("required", true);
     otherField.style.display = "block";
   });
 };
