@@ -68,15 +68,8 @@ const setField = function () {
 
     this.removeAttribute("required");
 
-    const html = `<input required class="contact-us-form-field w-input" maxlength="256" name="Other" data-name="Other" placeholder="Enter Your Timezone" type="text" id="other" style="display: block;"></input>`;
-
-    document
-      .querySelector(".request-a-callback-fields-wrapper")
-      .insertAdjacentHTML("afterbegin", html);
-
     const otherField = document.querySelector("#other");
     otherField.style.display = "block";
-    clickOnSelectedElement(this);
   });
 };
 setField();
