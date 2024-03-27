@@ -68,13 +68,14 @@ const setField = function () {
     if (!(this.value === "Other")) {
       otherField.style.display = "none";
       otherField.removeAttribute("required");
-      this.setAttribute("required",true);
+      this.setAttribute("required", true);
       return;
     }
 
     this.removeAttribute("required");
     otherField.setAttribute("required", true);
     otherField.style.display = "block";
+    clickOnSelectedElement(this);
   });
 };
 setField();
