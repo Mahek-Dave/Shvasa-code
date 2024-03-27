@@ -68,7 +68,7 @@ const setField = function () {
     if (!(this.value === "Other")) otherField.removeAttribute("required");
 
     this.removeAttribute("required");
-    otherField.setAttribute("required");
+    otherField.setAttribute("required", true);
     otherField.style.display = "block";
   });
 };
