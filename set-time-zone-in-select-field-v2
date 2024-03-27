@@ -69,6 +69,7 @@ const setField = function () {
     this.removeAttribute("required");
 
     const otherField = document.querySelector("#other");
+    otherField.setAttribute('required');
     otherField.style.display = "block";
   });
 };
