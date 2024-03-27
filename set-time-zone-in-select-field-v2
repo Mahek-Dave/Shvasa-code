@@ -66,9 +66,10 @@ const setField = function () {
   timezoneContainer.addEventListener("click", function () {
     const otherField = document.querySelector("#other");
     if (!(this.value === "Other")) {
-      otherField.removeAttribute("required")
+      otherField.style.display = "none";
+      otherField.removeAttribute("required");
       return;
-    };
+    }
 
     this.removeAttribute("required");
     otherField.setAttribute("required", true);
