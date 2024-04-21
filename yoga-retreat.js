@@ -53,3 +53,74 @@ const initYogaRetreat = function () {
 };
 
 initYogaRetreat();
+//////////////////////////////////
+
+var input = document.querySelector("#phone"),
+  dialCode = document.querySelector(".dialCode"),
+  errorMsg = document.querySelector("#error-msg"),
+  validMsg = document.querySelector("#valid-msg"),
+  iti = intlTelInput(input, {
+    initialCountry: "auto",
+    geoIpLookup: getIp,
+    utilsScript:
+      "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    placeholderNumberType: "FIXED_LINE",
+  });
+
+function updateInputValue(e) {
+  const t = e.target.id.split("-")[1] || 1,
+    r = document.querySelector("#phone" + (t > 1 ? "-" + t : "")),
+    n = ".dialCode" + (t > 1 ? "-" + t : ""),
+    i = document.querySelector(n),
+    u = parseInt(t) - 1;
+  (i.value = phones[u].getSelectedCountryData().dialCode),
+    console.log(
+      e,
+      "el",
+      i,
+      i.value,
+      t,
+      n,
+      r,
+      r.value,
+      phones[u].getSelectedCountryData(),
+      phones[u].getSelectedCountryData().dialCode
+    );
+}
+(phones = []),
+  document.querySelectorAll("[id^=phone]").forEach((e) =>
+    phones.push(
+      intlTelInput(e, {
+        initialCountry: "auto",
+        placeholderNumberType: "FIXED_LINE",
+      })
+    )
+  ),
+  document.addEventListener("input", updateInputValue, !1),
+  document.addEventListener("countrychange", updateInputValue, !1),
+  input.addEventListener("input", updateInputValue, !1),
+  input.addEventListener("countrychange", updateInputValue, !1);
+var errorMap = [
+    "Invalid number",
+    "Invalid country code",
+    "Too short",
+    "Too long",
+    "Invalid number",
+  ],
+  reset = function () {
+    input.classList.remove("error"),
+      (errorMsg.innerHTML = ""),
+      errorMsg.classList.add("hide"),
+      validMsg.classList.add("hide");
+  };
+input.addEventListener("blur", function () {
+  if ((reset(), input.value.trim()))
+    if (iti.isValidNumber()) validMsg.classList.remove("hide");
+    else {
+      input.classList.add("error");
+      var e = iti.getValidationError();
+      (errorMsg.innerHTML = errorMap[e]), errorMsg.classList.remove("hide");
+    }
+}),
+  input.addEventListener("change", reset),
+  input.addEventListener("keyup", reset);
