@@ -54,7 +54,7 @@ const initYogaRetreat = function () {
 
 initYogaRetreat();
 //////////////////////////////////
-
+/*
 var input = document.querySelector("#phone"),
   dialCode = document.querySelector(".dialCode"),
   errorMsg = document.querySelector("#error-msg"),
@@ -124,3 +124,4 @@ input.addEventListener("blur", function () {
 }),
   input.addEventListener("change", reset),
   input.addEventListener("keyup", reset);
+*/
