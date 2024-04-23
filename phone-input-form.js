@@ -17,7 +17,7 @@ const callArr = phoneInputFields.map((input) => {
   const phoneInput = window.intlTelInput(input, {
     initialCountry: "auto",
     geoIpLookup: getIpNew,
-    preferredCountries: ["us", "co", "in", "ca"],
+    preferredCountries: ["us", "ca", "ae", "in"],
     utilsScript:
       "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
   });
