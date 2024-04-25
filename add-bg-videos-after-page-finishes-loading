@@ -1,4 +1,4 @@
-// Get references to the video container and placeholder image
+
 const videoContainer = [...document.querySelectorAll('.bg-video-wrapper')];
 const placeholderImage =  [...document.querySelectorAll('.placeholder-image')];
 
