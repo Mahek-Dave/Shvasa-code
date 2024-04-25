@@ -3,7 +3,7 @@ const videoContainer = [...document.querySelectorAll('.bg-video-wrapper')];
 const placeholderImage =  [...document.querySelectorAll('.placeholder-image')];
 
 const addBgVideos = (src, img, container) => {
-    // Create the video embed code (replace this with your actual embed code)
+    // Create the video embed code
     const videoEmbedCode = `<video class="hero-bg-video" autoplay muted playsinline loop style="object-fit:cover; width:100%; height:100%">
     <source src=${src} type="video/mp4">
     </video>`;
