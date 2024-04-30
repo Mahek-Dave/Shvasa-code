@@ -36,15 +36,41 @@ const initYogaRetreat = function () {
     });
   });
 
+  // Function For Checking Screen Size
+  const checkScreenSize = function () {
+    return screen.width < 991 ? true : false;
+  };
+
   brochureDownload.forEach((btn) => {
     btn.addEventListener("click", function () {
-      const checkScreenSize = function () {
-        return screen.width < 991 ? true : false;
-      };
+      // Console Screen Size
       checkScreenSize()
-        ? console.log(`Mobile Screen Size ${screen.width}`)
-        : console.log(`Desktop Screen Size : ${screen.width} `);
-      pdfLink = btn.dataset.brochure;
+        ? console.log(
+            `%c Mobile Screen Size ${screen.width}`,
+            "color:green;size:2rem;font-weight:bold"
+          )
+        : console.log(
+            `Desktop Screen Size : ${screen.width}`,
+            "color:blue;size:2rem;font-weight:bold"
+          );
+
+      // Set Link
+      try {
+        pdfLink = checkScreenSize()
+          ? btn.dataset.brochureMobile
+          : btn.dataset.brochure;
+        console.log(
+          "%c Try Block Executed Successfully",
+          "color:green;size:2rem;font-weight:bold"
+        );
+      } catch (error) {
+        pdfLink = btn.dataset.brochure;
+        console.log(
+          `%c some error occured ${error}`,
+          "color:red;size:2rem;font-weight:bold"
+        );
+      }
+
       showModal(".lp-r-brochure-download-from-container");
     });
   });
