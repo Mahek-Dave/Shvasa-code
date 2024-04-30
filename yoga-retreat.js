@@ -43,7 +43,7 @@ const initYogaRetreat = function () {
       };
       checkScreenSize()
         ? console.log(`Mobile Screen Size ${screen.width}`)
-        : console.log(`Desktop Screen Size : ${screen.size} `);
+        : console.log(`Desktop Screen Size : ${screen.width} `);
       pdfLink = btn.dataset.brochure;
       showModal(".lp-r-brochure-download-from-container");
     });
