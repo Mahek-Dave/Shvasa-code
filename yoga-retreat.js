@@ -51,7 +51,7 @@ const initYogaRetreat = function () {
           )
         : console.log(
             `Desktop Screen Size : ${screen.width}`,
-            "color:blue;size:2rem;font-weight:bold"
+            "color:#0000ff;size:2rem;font-weight:bold"
           );
 
       // Set Link
