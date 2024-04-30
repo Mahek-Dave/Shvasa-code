@@ -47,11 +47,11 @@ const initYogaRetreat = function () {
       checkScreenSize()
         ? console.log(
             `%c Mobile Screen Size ${screen.width}`,
-            "color:green; font-size: 2rem; font-weight: bold;"
+            "color:green; font-size: 1rem; font-weight: bold;"
           )
         : console.log(
             `%c Desktop Screen Size : ${screen.width}`,
-            "color:blue; font-size: 2rem; font-weight: bold;"
+            "color:blue; font-size: 1rem; font-weight: bold;"
           );
 
       // Set Link
@@ -61,13 +61,13 @@ const initYogaRetreat = function () {
           : btn.dataset.brochure;
         console.log(
           "%c Try Block Executed Successfully",
-          "color:green;size:2rem;font-weight:bold"
+          "color:green; font-size:1rem; font-weight:bold"
         );
       } catch (error) {
         pdfLink = btn.dataset.brochure;
         console.log(
           `%c some error occured ${error}`,
-          "color:red;size:2rem;font-weight:bold"
+          "color:red; font-size:1rem; font-weight:bold"
         );
       }
 
