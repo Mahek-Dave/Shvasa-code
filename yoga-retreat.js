@@ -38,6 +38,12 @@ const initYogaRetreat = function () {
 
   brochureDownload.forEach((btn) => {
     btn.addEventListener("click", function () {
+      const checkScreenSize = function () {
+        return screen.width < 991 ? true : false;
+      };
+      checkScreenSize()
+        ? console.log(`Mobile Screen Size ${screen.width}`)
+        : console.log(`Desktop Screen Size : ${screen.size} `);
       pdfLink = btn.dataset.brochure;
       showModal(".lp-r-brochure-download-from-container");
     });
