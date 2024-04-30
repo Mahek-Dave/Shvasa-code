@@ -47,11 +47,11 @@ const initYogaRetreat = function () {
       checkScreenSize()
         ? console.log(
             `%c Mobile Screen Size ${screen.width}`,
-            "color:green;size:2rem;font-weight:bold"
+            "color:green; font-size: 2rem; font-weight: bold;"
           )
         : console.log(
-            `Desktop Screen Size : ${screen.width}`,
-            "color:#0000ff;size:2rem;font-weight:bold"
+            `%c Desktop Screen Size : ${screen.width}`,
+            "color:blue; font-size: 2rem; font-weight: bold;"
           );
 
       // Set Link
