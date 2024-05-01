@@ -23,9 +23,11 @@ const initYogaRetreat = function () {
 
   inquireBtn.forEach((btn) => {
     btn.addEventListener("click", function () {
-      const clickDetail = btn.dataset.inquire;
-      clickedData.value = clickDetail;
-      showModal(".lp-r-slots-form-container");
+      //const clickDetail = btn.dataset.inquire;
+      //clickedData.value = clickDetail;
+      //showModal(".lp-r-slots-form-container");
+
+      window.open("https://calendly.com/aradhana-shvasa/15min", "_blank");
     });
   });
 
