@@ -34,7 +34,7 @@ const payload = {
 };
 
 export const loadFreeTrialData = async function (packageId) {
-  const data = AJAX(`${API_URL}/api/package/data/${packageId}`);
   console.log("loaded model");
+  const data = AJAX(`${API_URL}/api/package/data/${packageId}`);
   console.log(data);
 };
