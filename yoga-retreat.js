@@ -27,7 +27,10 @@ const initYogaRetreat = function () {
       //clickedData.value = clickDetail;
       //showModal(".lp-r-slots-form-container");
 
-      window.open("https://calendly.com/aradhana-shvasa/15min", "_blank");
+      window.open(
+        "https://calendly.com/d/ckbf-2qb-cfh/shvasayoga-retreat?month=2024-05",
+        "_blank"
+      );
     });
   });
 
