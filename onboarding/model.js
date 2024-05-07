@@ -35,6 +35,6 @@ const payload = {
 
 export const loadPackageData = async function (packageId) {
   console.log("loaded model");
-  const data = AJAX(`${API_URL}/api/package/data/${packageId}`);
+  const data = await AJAX(`${API_URL}/api/package/data/${packageId}`);
   console.log(data);
 };
