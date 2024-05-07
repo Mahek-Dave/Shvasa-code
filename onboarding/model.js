@@ -19,11 +19,11 @@ import { AJAX } from "./helper";
  */
 
 const payload = {
-  name,
-  email,
-  phone,
-  age,
-  gender,
+  name: "",
+  email: "",
+  phone: "",
+  age: "",
+  gender: "",
   weight: {
     unit: "",
     value: "",
