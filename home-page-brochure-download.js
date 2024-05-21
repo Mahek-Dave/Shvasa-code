@@ -16,19 +16,6 @@ const initYogaRetreat = function () {
     popupWrapper.style.opacity = "0";
   };
 
-  inquireBtn.forEach((btn) => {
-    btn.addEventListener("click", function () {
-      //const clickDetail = btn.dataset.inquire;
-      //clickedData.value = clickDetail;
-      //showModal(".lp-r-slots-form-container");
-
-      window.open(
-        "https://calendly.com/d/ckbf-2qb-cfh/shvasayoga-retreat?month=2024-05",
-        "_blank"
-      );
-    });
-  });
-
   closeBtn.forEach((btn) => {
     btn.addEventListener("click", function () {
       const closeTarget = btn.parentNode.parentNode;
