@@ -1,6 +1,8 @@
 // IIFE function
 (() => {
+  // Guard Close
   if (flow1SignupPopupNotNeeded) return;
+  
   let iframeAdded = false;
   let popup;
 
