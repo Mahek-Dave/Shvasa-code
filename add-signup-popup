@@ -1,5 +1,6 @@
 // IIFE function
 (() => {
+  if (flow1SignupPopupNotNeeded) return;
   let iframeAdded = false;
   let popup;
 
