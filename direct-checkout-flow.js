@@ -23,7 +23,7 @@
   });
 
   // Elements
-  const allBtns = [...document.querySelectorAll(".free-trial-wrapper")];
+  const allBtns = [...document.querySelectorAll("[data-redirect-v2]")];
   //const closeBtn = document.querySelector(".close-signup-popup");
   const mainBody = document.querySelector(".page-wrapper");
 
