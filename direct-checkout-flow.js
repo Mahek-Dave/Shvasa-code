@@ -8,7 +8,7 @@
   const pageUrl = encodeURIComponent(window.location.href);
 
   // Signup iframe
-  const iframeHTML = `<iframe class="signup-popup" src="https://app.shvasa.com/widgets?widget=loginPopup&url=${pageUrl}"></iframe>`;
+  const iframeHTML = `<iframe class="signup-popup" src="https://app.shvasa.com/widgets?widget=loginPopup&selfcheckout=true&url=${pageUrl}"></iframe>`;
 
   // Add popup to body
   const addPopup = (html) =>
