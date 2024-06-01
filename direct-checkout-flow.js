@@ -60,7 +60,7 @@
   // Message received from child
   if (event.data?.event === "loggedIn") {
     window.location =
-    "https://shvasa-staging-web.vercel.app/onboardingv2?widget=loginpopup&token=" +
+    "https://shvasa-staging-web.vercel.app/onboardingv2?widget=loginpopup&productGroupId=66597fe2d1d3e89dd4279a61&token=" +
      event.data?.token;
     }
   });
