@@ -11,7 +11,7 @@
  * const iframeURL = 'https://app.shvasa.com/widgets?widget=loginPopup&selfcheckout=true';
  */
   const iframeURL = 'https://shvasa-staging-web.vercel.app';
-  cosole.log(pageUrl)
+  console.log(pageUrl)
   // Signup iframe
   const iframeHTML = `<iframe class="signup-popup" src="${iframeUrl}/widgets?widget=loginPopup&selfcheckout=true&url=${pageUrl}"></iframe>`;
   console.log(iframeHTML)
