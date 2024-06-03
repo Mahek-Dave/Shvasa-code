@@ -6,15 +6,14 @@
 
   // Get url to fetch UTM paras
   const pageUrl = encodeURIComponent(window.location.href);
+  
 /**
  * PRODUCTION URL
  * const iframeURL = 'https://app.shvasa.com/widgets?widget=loginPopup&selfcheckout=true';
  */
   const iframeURL = 'https://shvasa-staging-web.vercel.app';
-  console.log(pageUrl)
   // Signup iframe
   const iframeHTML = `<iframe class="signup-popup" src="${iframeURL}/widgets?widget=loginPopup&selfcheckout=true&url=${pageUrl}"></iframe>`;
-  console.log(iframeHTML)
 
   // Add popup to body
   const addPopup = (html) =>
