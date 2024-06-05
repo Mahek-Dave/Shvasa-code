@@ -66,7 +66,7 @@
   // Message received from child
   if (event.data?.event === "loggedIn") {
     window.location =
-    "https://app.shvasa.com/onboardingv2?widget=loginpopup&productGroupId=66597fe2d1d3e89dd4279a61&token=" +
+    "https://app.shvasa.com/onboardingv2?widget=loginpopup&productGroupId=6659c92ead6e41a400d0ce1e&token=" +
      event.data?.token;
     }
   });
