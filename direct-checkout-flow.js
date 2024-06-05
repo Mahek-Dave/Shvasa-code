@@ -10,8 +10,9 @@
 /**
  * PRODUCTION URL
  * const iframeURL = 'https://app.shvasa.com/widgets?widget=loginPopup&selfcheckout=true';
+ * https://shvasa-staging-web.vercel.app
  */
-  const iframeURL = 'https://shvasa-staging-web.vercel.app';
+  const iframeURL = 'https://app.shvasa.com';
   // Signup iframe
   const iframeHTML = `<iframe class="signup-popup" src="${iframeURL}/widgets?widget=loginPopup&selfcheckout=true&url=${pageUrl}"></iframe>`;
 
@@ -65,7 +66,7 @@
   // Message received from child
   if (event.data?.event === "loggedIn") {
     window.location =
-    "https://shvasa-staging-web.vercel.app/onboardingv2?widget=loginpopup&productGroupId=66597fe2d1d3e89dd4279a61&token=" +
+    "https://app.shvasa.com/onboardingv2?widget=loginpopup&productGroupId=66597fe2d1d3e89dd4279a61&token=" +
      event.data?.token;
     }
   });
