@@ -14,7 +14,7 @@
  */
   const iframeURL = 'https://app.shvasa.com';
   // Signup iframe
-  const iframeHTML = `<iframe class="signup-popup" src="${iframeURL}/widgets?widget=loginPopup&selfcheckout=true&url=${pageUrl}"></iframe>`;
+  const iframeHTML = `<iframe class="signup-popup" src="${iframeURL}/widgets?widget=loginPopup&selfcheckout=true&skipphone=true&url=${pageUrl}"></iframe>`;
 
   // Add popup to body
   const addPopup = (html) =>
