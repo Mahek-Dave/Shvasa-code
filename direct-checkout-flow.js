@@ -36,7 +36,7 @@
 
   // Display popup
   const showPopup = () => {
-    if (iframeAdded === false) {addPopup(iframeHTML)};
+    if (iframeAdded === false) {addPopup(iframeHTML2)};
 
     mainBody.style.overflow = "hidden";
     mainBody.style.height = "100vh";
