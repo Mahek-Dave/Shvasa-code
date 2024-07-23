@@ -15,7 +15,7 @@
   const iframeURL = 'https://app.shvasa.com';
   // Signup iframe
   const iframeHTML = `<iframe class="signup-popup" src="${iframeURL}/widgets?widget=loginPopup&selfcheckout=true&skipphone=true&skippassword=true&url=${pageUrl}"></iframe>`;
-  const iframeHTML2 = `<iframe class="signup-popup" src="https://app.shvasa.com/widgets?widget=loginPopup&selfcheckout=true&skipphone=true&skippassword=true&url=${pageUrl}"></iframe>`;
+  const iframeHTML2 = `<iframe class="signup-popup" src="https://app.shvasa.com/widgets?widget=loginPopup&selfcheckout=true&skipphone=true&url=https%3A%2F%2Fwww.shvasa.com%2Fjoin%2Fonline-yoga-classes&skippassword=true"></iframe>`;
 
   // Add popup to body
   const addPopup = (html) =>
