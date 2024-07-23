@@ -15,6 +15,7 @@
   const iframeURL = 'https://app.shvasa.com';
   // Signup iframe
   const iframeHTML = `<iframe class="signup-popup" src="${iframeURL}/widgets?widget=loginPopup&selfcheckout=true&skipphone=true&skippassword=true&url=${pageUrl}"></iframe>`;
+  const iframeHTML2 = `<iframe class="signup-popup" src="https://app.shvasa.com/widgets?widget=loginPopup&selfcheckout=true&skipphone=true&skippassword=true&url=${pageUrl}"></iframe>`;
 
   // Add popup to body
   const addPopup = (html) =>
@@ -23,7 +24,7 @@
   // Add popup after page loads
   window.addEventListener("load", function () {
     if (iframeAdded === true) return;
-    addPopup(iframeHTML);
+    addPopup(iframeHTML2);
     iframeAdded = true;
     //console.log(iframeAdded);
   });
