@@ -24,7 +24,7 @@
   // Add popup after page loads
   window.addEventListener("load", function () {
     if (iframeAdded === true) return;
-    addPopup(iframeHTML2);
+    addPopup(iframeHTML);
     iframeAdded = true;
     //console.log(iframeAdded);
   });
@@ -36,7 +36,7 @@
 
   // Display popup
   const showPopup = () => {
-    if (iframeAdded === false) {addPopup(iframeHTML2)};
+    if (iframeAdded === false) {addPopup(iframeHTML)};
 
     mainBody.style.overflow = "hidden";
     mainBody.style.height = "100vh";
