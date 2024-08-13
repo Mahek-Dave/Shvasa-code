@@ -62,11 +62,14 @@
     console.log(
       "Message received from the child: " + JSON.stringify(event.data)
     ); 
-    
+
+  // Old URL
+  //https://app.shvasa.com/onboardingv2?widget=loginpopup&productGroupId=6659c92ead6e41a400d0ce1e&token="
+  //https://app.shvasa.com/onboardingv2?productGroupId=66b9fb76b32b4935d78f9056 
   // Message received from child
   if (event.data?.event === "loggedIn") {
     window.location =
-    "https://app.shvasa.com/onboardingv2?widget=loginpopup&productGroupId=6659c92ead6e41a400d0ce1e&token=" +
+    "https://app.shvasa.com/onboardingv2?widget=loginpopup&productGroupId=66b9fb76b32b4935d78f9056&token=" +
      event.data?.token;
     }
   });
