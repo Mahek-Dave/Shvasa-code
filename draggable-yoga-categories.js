@@ -1,9 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Select the scrollable wrapper div
   const scrollWrapper = document.querySelector(".yoga-categories-scroll-wrapper");
+  const containerWidthSetter = document.querySelector("[data-category-width-setter]");
   let isDragging = false;
   let startX;
   let scrollLeft;
+
+  // Get the computed style of the containerWidthSetter to find its max-width
+  const computedStyle = getComputedStyle(containerWidthSetter);
+  const maxWidth = computedStyle.maxWidth;
+
+  // Apply that maxWidth to the scrollWrapper
+  scrollWrapper.style.maxWidth = maxWidth;
 
   // Function to handle the dragging logic
   const startDragging = (e) => {
