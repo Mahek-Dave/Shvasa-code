@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Select the scrollable wrapper div
-  const scrollWrapper = document.querySelector(".yoga-categories-container");
+  const scrollWrapper = document.querySelector(".yoga-categories-scroll-wrapper");
   let isDragging = false;
   let startX;
   let scrollLeft;
