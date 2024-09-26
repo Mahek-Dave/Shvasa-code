@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
   let scrollLeft;
 
   // Get the global container of the page
-  const classToAdd = containerWidthSetter.classList[0];
+  const classArray = Array.from(containerWidthSetter.classList);
+  const classToAdd = classArray.filter(el => el.includes('main-container')).at(0);
   console.log(classToAdd);
 
   // Apply that container to Targeted container
