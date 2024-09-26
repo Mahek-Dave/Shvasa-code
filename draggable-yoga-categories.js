@@ -17,8 +17,13 @@ document.addEventListener("DOMContentLoaded", function () {
     return targetedContainer ? targetedContainer.classList.contains(target) : false;
   }
 
+  const addPadding = function(target){
+    target.style.paddingRight = '30px';
+    target.style.paddingLeft = '15px';
+  }
+
   window.innerWidth < 478 && targetedContainer && checkTargetedElementExist('main-container') 
-    ? targetedContainer.classList.add('15-px-padding-on-mobile') 
+    ? addPadding(targetedContainer) 
     : null; // or use undefined, or simply do nothing.
 
   // Function to handle the dragging logic
