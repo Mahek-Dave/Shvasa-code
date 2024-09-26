@@ -13,6 +13,14 @@ document.addEventListener("DOMContentLoaded", function () {
   // Apply that container to Targeted container
   targetedContainer.classList.add(classToAdd);
 
+  const checkTargetedElementExist = function(target) {
+    return targetedContainer ? targetedContainer.classList.contains(target) : false;
+  }
+
+  window.innerWidth < 478 && targetedContainer && checkTargetedElementExist('main-container') 
+    ? targetedContainer.classList.add('15-px-padding-on-mobile') 
+    : null; // or use undefined, or simply do nothing.
+
   // Function to handle the dragging logic
   const startDragging = (e) => {
     isDragging = true;
