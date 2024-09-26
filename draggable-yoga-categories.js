@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Select the scrollable wrapper div
+ 
+  const addScrollableFunctionality = function(){
+    // Select the scrollable wrapper div
   const scrollWrapper = document.querySelector(".yoga-categories-scroll-wrapper");
   const containerWidthSetter = document.querySelector("[data-category-width-setter]");
   const targetedContainer = document.querySelector("[data-container-target]");
@@ -78,4 +80,10 @@ document.addEventListener("DOMContentLoaded", function () {
   };
   
   checkWidthAndAddListeners();
+ }
+
+ addScrollableFunctionality();
+
+ window.addEventListener('resize',addScrollableFunctionality);
+  
 });
