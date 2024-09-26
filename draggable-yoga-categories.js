@@ -10,11 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Get the global container of the page
   const classArray = Array.from(containerWidthSetter.classList);
   const classToAdd = classArray.filter(el => el.includes('main-container')).at(0);
-  console.log(classToAdd);
 
   // Apply that container to Targeted container
   targetedContainer.classList.add(classToAdd);
-  console.log('class adding step completed');
 
   const checkTargetedElementExist = function(target) {
     return targetedContainer ? targetedContainer.classList.contains(target) : false;
@@ -28,8 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
   window.innerWidth < 478 && targetedContainer && checkTargetedElementExist('main-container') 
     ? addPadding(targetedContainer) 
     : null; // or use undefined, or simply do nothing.
-
-console.log('padding step has been completed');
 
   // Function to handle the dragging logic
   const startDragging = (e) => {
