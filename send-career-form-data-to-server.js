@@ -7,6 +7,9 @@ const certificationField = document.querySelector(
 const otherSpecialisationsCheckbox = document.querySelector(
   "#otherSpecialisationsCheckbox"
 );
+const specialisationsPlaceholderText = document.querySelector(
+  "#specialisations-text"
+);
 
 const formBtn = document.querySelector(".career-submit-btn");
 const submitBtn = document.querySelector(".hidden-submit-btn");
@@ -28,6 +31,7 @@ const feildsValuesArr = [
     ],
     yearsOfPracticePlaceHolder: "How many years have you practiced yoga?",
     yearsOfTeachingPlaceHolder: "How many years have you taught yoga?",
+    specialisationsPlaceHolder: "Specialisations (if any)",
   },
   {
     name: "Dance Fitness Teacher",
@@ -40,6 +44,8 @@ const feildsValuesArr = [
     yearsOfPracticePlaceHolder:
       "How many years you have been practicing Dance?",
     yearsOfTeachingPlaceHolder: "How many years have you taught Dancing?",
+    specialisationsPlaceHolder:
+      "Specialization (Any trained classical or western Dance forms)",
   },
   {
     name: "Strength Training Teacher",
@@ -57,6 +63,7 @@ const feildsValuesArr = [
       "How many years you have been practicing Strength Training?",
     yearsOfTeachingPlaceHolder:
       "How many years have you taught Strength Training?",
+    specialisationsPlaceHolder: "Specialisations (if any)",
   },
   {
     name: "Pilates Teacher",
@@ -72,6 +79,7 @@ const feildsValuesArr = [
       "How many years you have been practicing Pilates?",
     yearsOfTeachingPlaceHolder:
       "How many years have you taught Strength Pilates?",
+    specialisationsPlaceHolder: "Specialisations (if any)",
   },
 ];
 
@@ -81,60 +89,36 @@ const optionHTML = function (value) {
   }">${value}</option>`;
 };
 
+const updatePlaceholderAndAddOptions = function (iName) {
+  currentObj = feildsValuesArr.find(({ name }) => name === iName);
+  console.log(currentObj);
+  practiceField.options[0].text = currentObj.yearsOfPracticePlaceHolder;
+  toughtField.options[0].text = currentObj.yearsOfTeachingPlaceHolder;
+  specialisationsPlaceholderText.innerHTML =
+    currentObj.specialisationsPlaceHolder;
+
+  certificationField.innerHTML = "";
+  currentObj.certifications.forEach((value) => {
+    certificationField.insertAdjacentHTML("beforeend", optionHTML(value));
+  });
+};
+
 const updateFieldsWithPosition = function () {
   const position = positionField.value;
   let currentObj;
 
   switch (position) {
     case "Yoga Teacher":
-      currentObj = feildsValuesArr.find(({ name }) => name === "Yoga Teacher");
-      console.log(currentObj);
-      practiceField.options[0].text = currentObj.yearsOfPracticePlaceHolder;
-      toughtField.options[0].text = currentObj.yearsOfTeachingPlaceHolder;
-
-      certificationField.innerHTML = "";
-      currentObj.certifications.forEach((value) => {
-        certificationField.insertAdjacentHTML("beforeend", optionHTML(value));
-      });
+      updatePlaceholderAndAddOptions("Yoga Teacher");
       break;
     case "Dance Fitness Teacher":
-      currentObj = feildsValuesArr.find(
-        ({ name }) => name === "Dance Fitness Teacher"
-      );
-      console.log(currentObj);
-      practiceField.options[0].text = currentObj.yearsOfPracticePlaceHolder;
-      toughtField.options[0].text = currentObj.yearsOfTeachingPlaceHolder;
-
-      certificationField.innerHTML = "";
-      currentObj.certifications.forEach((value) => {
-        certificationField.insertAdjacentHTML("beforeend", optionHTML(value));
-      });
+      updatePlaceholderAndAddOptions("Dance Fitness Teacher");
       break;
     case "Strength Training Teacher":
-      currentObj = feildsValuesArr.find(
-        ({ name }) => name === "Strength Training Teacher"
-      );
-      console.log(currentObj);
-      practiceField.options[0].text = currentObj.yearsOfPracticePlaceHolder;
-      toughtField.options[0].text = currentObj.yearsOfTeachingPlaceHolder;
-
-      certificationField.innerHTML = "";
-      currentObj.certifications.forEach((value) => {
-        certificationField.insertAdjacentHTML("beforeend", optionHTML(value));
-      });
+      updatePlaceholderAndAddOptions("Strength Training Teacher");
       break;
     case "Pilates Teacher":
-      currentObj = feildsValuesArr.find(
-        ({ name }) => name === "Pilates Teacher"
-      );
-      console.log(currentObj);
-      practiceField.options[0].text = currentObj.yearsOfPracticePlaceHolder;
-      toughtField.options[0].text = currentObj.yearsOfTeachingPlaceHolder;
-
-      certificationField.innerHTML = "";
-      currentObj.certifications.forEach((value) => {
-        certificationField.insertAdjacentHTML("beforeend", optionHTML(value));
-      });
+      updatePlaceholderAndAddOptions("Pilates Teacher");
       break;
 
     default:
