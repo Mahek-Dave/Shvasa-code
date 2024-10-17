@@ -81,6 +81,22 @@ const feildsValuesArr = [
       "How many years have you taught Strength Pilates?",
     specialisationsPlaceHolder: "Specialisations (if any)",
   },
+  {
+    name: "Other",
+    certifications: [
+      "Select Your Highest certification",
+      "RYT 200",
+      "RYT 300",
+      "RYT 500",
+      "Bachelors in yoga",
+      "Masters in yoga",
+      "PHD in yoga",
+      "Other",
+    ],
+    yearsOfPracticePlaceHolder: "How many years you have been practicing?",
+    yearsOfTeachingPlaceHolder: "How many years have you taught",
+    specialisationsPlaceHolder: "Specialisations (if any)",
+  },
 ];
 
 const optionHTML = function (value) {
@@ -89,7 +105,7 @@ const optionHTML = function (value) {
   }">${value}</option>`;
 };
 
-const updatePlaceholderAndAddOptions = function (iName) {
+const updatePlaceholderAndAddOptions = function (iName = "Other") {
   currentObj = feildsValuesArr.find(({ name }) => name === iName);
   console.log(currentObj);
   practiceField.options[0].text = currentObj.yearsOfPracticePlaceHolder;
@@ -119,6 +135,9 @@ const updateFieldsWithPosition = function () {
       break;
     case "Pilates Teacher":
       updatePlaceholderAndAddOptions("Pilates Teacher");
+      break;
+    case "Other":
+      updatePlaceholderAndAddOptions("Other");
       break;
 
     default:
