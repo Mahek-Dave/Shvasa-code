@@ -11,19 +11,18 @@ const specialisationsPlaceholderText = document.querySelector(
   "#specialisations-text"
 );
 
-const allSelectFields = [...document.querySelectorAll('select')];
+const allSelectFields = [...document.querySelectorAll("select")];
 
-
-allSelectFields.forEach(select => {
-  select.addEventListener('input', function(){
-      console.log(this.value)
-      if(this.value === null || this.value === 'null') {
-          this.style.color = '#4d4d4d99';
-      } else{
-          this.style.color = '#333333';
-      }
-  })
-})
+allSelectFields.forEach((select) => {
+  select.addEventListener("input", function () {
+    console.log(this.value);
+    if (this.value === null || this.value === "null") {
+      this.style.color = "#4d4d4d99";
+    } else {
+      this.style.color = "#333333";
+    }
+  });
+});
 
 const formBtn = document.querySelector(".career-submit-btn");
 const submitBtn = document.querySelector(".hidden-submit-btn");
@@ -227,7 +226,7 @@ const removeOtherInputField = function (el) {
 // Function to show the spinner
 function showSpinner() {
   formBtn.innerHTML = "Please wait...";
-  spinner.style.display = "block";
+  spinner.style.display = "flex";
 }
 
 // Function to hide the spinner
@@ -318,6 +317,7 @@ const controlFormDataSending = async function () {
     } catch (error) {
       console.error("Error:", error);
     } finally {
+      hideSpinner();
     }
   };
 
