@@ -14,6 +14,8 @@ const specialisationsPlaceholderText = document.querySelector(
 const formBtn = document.querySelector(".career-submit-btn");
 const submitBtn = document.querySelector(".hidden-submit-btn");
 
+const spinner = document.querySelector(".spinner");
+
 const fieldArrayWithOtherOptions = ["positionName", "highestCertification"];
 
 const feildsValuesArr = [
@@ -208,6 +210,18 @@ const removeOtherInputField = function (el) {
   removeTarget ? removeTarget.closest(".career-form-row").remove() : null;
 };
 
+// Function to show the spinner
+function showSpinner() {
+  formBtn.innerHTML = "Please wait...";
+  spinner.style.display = "block";
+}
+
+// Function to hide the spinner
+function hideSpinner() {
+  formBtn.innerHTML = "Done";
+  spinner.style.display = "none";
+}
+
 const controlFormDataSending = async function () {
   const getFormData = function () {
     // Form Selection
@@ -282,12 +296,14 @@ const controlFormDataSending = async function () {
       body: JSON.stringify(finalObj),
     };
     try {
+      showSpinner();
       const response = await fetch(url, params);
       const data = await response.json();
 
       console.log(data);
     } catch (error) {
       console.error("Error:", error);
+    } finally {
     }
   };
 
