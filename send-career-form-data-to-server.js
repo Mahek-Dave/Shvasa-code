@@ -11,6 +11,20 @@ const specialisationsPlaceholderText = document.querySelector(
   "#specialisations-text"
 );
 
+const allSelectFields = [...document.querySelectorAll('select')];
+
+
+allSelectFields.forEach(select => {
+  select.addEventListener('input', function(){
+      console.log(this.value)
+      if(this.value === null || this.value === 'null') {
+          this.style.color = '#4d4d4d99';
+      } else{
+          this.style.color = '#333333';
+      }
+  })
+})
+
 const formBtn = document.querySelector(".career-submit-btn");
 const submitBtn = document.querySelector(".hidden-submit-btn");
 
