@@ -300,12 +300,12 @@ const controlFormDataSending = async function () {
 
   // AJAX Call to post data
   const sendFormData = async function (finalObj) {
-    const url = "https://services.truyoga.in/api/applications/teacher";
+    const url = "https://services.shvasa.com/api/applications/teacher";
     const params = {
       method: "POST",
       headers: {
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzA1MDFlY2I5YjQxZWEzNTNkNGZlNGEiLCJlbWFpbCI6InNhdXJhYmgrY29ycEBzaHZhc2EuY29tIiwicm9sZSI6MSwiaWF0IjoxNzI4MzgxNDQ0fQ.QMHlrc5b2Igp-wyF2BOcAIObreaCcrzLEB_QJma2KOk",
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzkwMmQ0NTc0OGE3MzZjZmFiNDk1YjUiLCJlbWFpbCI6InNhdXJhYmhrbXIwMjQxQGdtYWlsLmNvbSIsInJvbGUiOjEsImlhdCI6MTcyNzk2MzA1OX0.90SGE-dYeZSnQwHklSP4r6VWRpy4Ci0qN8mXJ2ttT6s",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(finalObj),
