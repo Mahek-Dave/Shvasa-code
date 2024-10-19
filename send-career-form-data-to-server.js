@@ -351,8 +351,6 @@ otherSpecialisationsCheckbox.addEventListener("click", function () {
 });
 
 formBtn.addEventListener("click", async function () {
-  const form = document.querySelector("#career-form-3");
-  if (!form.checkValidity()) return;
   await controlFormDataSending();
   submitBtn.click();
 });
