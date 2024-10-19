@@ -27,7 +27,7 @@ allSelectFields.forEach((select) => {
 const formBtn = document.querySelector(".career-submit-btn");
 const submitBtn = document.querySelector(".hidden-submit-btn");
 
-const spinner = document.querySelector(".spinner");
+const formBtnElements = formBtn.children;
 
 const fieldArrayWithOtherOptions = ["positionName", "highestCertification"];
 
@@ -127,6 +127,8 @@ const updatePlaceholderAndAddOptions = function (iName = "Other") {
   toughtField.options[0].text = currentObj.yearsOfTeachingPlaceHolder;
   specialisationsPlaceholderText.innerHTML =
     currentObj.specialisationsPlaceHolder;
+  specialisationsPlaceholderText.dataset.placeholder =
+    currentObj.specialisationsPlaceHolder;
 
   certificationField.innerHTML = "";
   currentObj.certifications.forEach((value) => {
@@ -225,8 +227,8 @@ const removeOtherInputField = function (el) {
 
 // Function to show the spinner
 function showSpinner() {
-  formBtn.innerHTML = "Please wait...";
-  spinner.style.display = "flex";
+  formBtnElements[0].innerHTML = "Please wait...";
+  formBtnElements[1].style.display = "flex";
 }
 
 // Function to hide the spinner
@@ -350,6 +352,75 @@ otherSpecialisationsCheckbox.addEventListener("click", function () {
 });
 
 formBtn.addEventListener("click", async function () {
+  const form = document.querySelector("#career-form-3");
+  if (!form.checkValidity()) return;
   await controlFormDataSending();
   submitBtn.click();
+});
+
+const changeColorOfPlaceholderText = function (element, color) {
+  element.style.color = color;
+};
+
+const controlStylingofPlaceholderText = function (element) {
+  if (element.innerHTML.includes("Specialisations")) {
+    changeColorOfPlaceholderText(element, "#4d4d4d99");
+  } else {
+    changeColorOfPlaceholderText(element, "#333333");
+  }
+};
+
+const allCheckboxeInputs = Array.from(
+  document.querySelectorAll('[type="checkbox"]')
+);
+
+const setspecialisationsPlaceholderText = function (text) {
+  specialisationsPlaceholderText.innerHTML = text;
+};
+
+// Event listener for each checkbox input
+allCheckboxeInputs.forEach((inputField) => {
+  inputField.addEventListener("input", function () {
+    const placeholder = specialisationsPlaceholderText.dataset.placeholder;
+
+    // Get filtered array of checked checkboxes
+    const filteredArray = allCheckboxeInputs
+      .filter((i) => i.checked && !(i.name === "otherSpecialisationsCheckbox"))
+      .map((i) => i.name);
+
+    const filteredStr = filteredArray.join(",");
+
+    // Check if no checkboxes are selected
+    if (filteredArray.length === 0) {
+      setspecialisationsPlaceholderText(placeholder);
+    } else {
+      setspecialisationsPlaceholderText(filteredStr);
+    }
+
+    // Add event listener for 'otherSpecialisationsField' when "other" checkbox is checked
+    const otherSpecialisationsCheckbox = document.querySelector(
+      '[name="otherSpecialisationsCheckbox"]'
+    );
+
+    if (otherSpecialisationsCheckbox && otherSpecialisationsCheckbox.checked) {
+      const otherSpecialisationsField = document.querySelector(
+        '[name="otherSpecialisations"]'
+      );
+
+      if (otherSpecialisationsField) {
+        otherSpecialisationsField.addEventListener("input", function () {
+          setspecialisationsPlaceholderText(
+            filteredArray.length === 0
+              ? placeholder
+              : `${filteredStr}, ${otherSpecialisationsField.value}`
+          );
+
+          controlStylingofPlaceholderText(specialisationsPlaceholderText);
+        });
+      }
+    }
+
+    // Control styling after text update
+    controlStylingofPlaceholderText(specialisationsPlaceholderText);
+  });
 });
