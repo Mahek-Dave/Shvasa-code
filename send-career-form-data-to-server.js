@@ -233,8 +233,8 @@ function showSpinner() {
 
 // Function to hide the spinner
 function hideSpinner() {
-  formBtn.innerHTML = "Done";
-  spinner.style.display = "none";
+  formBtnElements[0].innerHTML = "Done";
+  formBtnElements[1].style.display = "none";
 }
 
 const controlFormDataSending = async function () {
@@ -319,7 +319,6 @@ const controlFormDataSending = async function () {
     } catch (error) {
       console.error("Error:", error);
     } finally {
-      hideSpinner();
     }
   };
 
