@@ -42,7 +42,7 @@ const callback = (entries, observer) =>{
 
 const options = {
     root : null,
-    rootMargin : "-10%"
+    rootMargin : "-70%"
 }
 
 const observer = new IntersectionObserver(callback, options);
