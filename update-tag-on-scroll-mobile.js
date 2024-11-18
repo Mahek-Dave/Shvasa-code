@@ -3,6 +3,7 @@ if(!window.innerWidth < 990) return;
 
 const allBenefitImages = Array.from(document.querySelectorAll('.subscription-benefits-image-wrapper'));
 const tagTitle = document.querySelector('[data-benefit-tag-title]');
+const tagTitleWrapper = document.querySelector('[data-tag-mob]');
 
 const updateTagTitle = function(text){
     tagTitle.innerHTML = text;
@@ -17,7 +18,7 @@ const callback = (entries, observer) =>{
             switch(index){
                 case 0 : 
                 updateTagTitle('YOGA');
-                tagTitle.style.opacity = "100%"
+                tagTitleWrapper.style.opacity = "100%"
                 break;
 
                 case 1 : 
