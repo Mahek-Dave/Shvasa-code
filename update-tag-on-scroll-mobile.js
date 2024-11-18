@@ -1,5 +1,5 @@
 const updateTag = function(){
-if(!window.innerWidth < 990) return;
+if(window.innerWidth > 990) return;
 
 const allBenefitImages = Array.from(document.querySelectorAll('.subscription-benefits-image-wrapper'));
 const tagTitle = document.querySelector('[data-benefit-tag-title]');
@@ -53,4 +53,3 @@ allBenefitImages.forEach(image=>{
 }
 
 updateTag()
-
