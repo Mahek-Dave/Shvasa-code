@@ -51,3 +51,5 @@ allBenefitImages.forEach(image=>{
 })
 }
 
+updateTag()
+
