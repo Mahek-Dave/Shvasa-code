@@ -1,4 +1,4 @@
-if(window.innerWidth < 990) return;
+const updateTag = function(){if(window.innerWidth < 990) return;
 
 const allBenefitImages = Array.from(document.querySelectorAll('.subscription-benefits-image-wrapper'));
 const tagTitle = document.querySelector('[data-benefit-tag-title]');
@@ -48,3 +48,6 @@ const observer = new IntersectionObserver(callback, options);
 allBenefitImages.forEach(image=>{
     observer.observe(image);
 })
+}
+
+updateTag()
