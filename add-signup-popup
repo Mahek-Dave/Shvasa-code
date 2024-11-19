@@ -46,7 +46,7 @@
   const closePopup = () => {
     popup.style.display = "none";
     closeBtn.style.display = "none";
-    mainBody.style.overflow = "auto";
+    mainBody.style.overflow = "visible";
     mainBody.style.height = "auto";
   };
 
