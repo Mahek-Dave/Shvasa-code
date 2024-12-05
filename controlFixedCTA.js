@@ -1,7 +1,6 @@
 const controlFixedCTAVisibility = function (targetClass,CTA,rootClass=null) {
   const target = document.querySelector(`.${targetClass}`);
   const fixedCTA = document.querySelector(`.${CTA}`);
-  console.log(fixedCTA);
   const fixedCTAData = fixedCTA.getClientRects()[0];
 
   let visible = false;
@@ -15,7 +14,6 @@ const controlFixedCTAVisibility = function (targetClass,CTA,rootClass=null) {
   const callback = (entries, observer) => {
     entries.forEach((enrty) => {
       if (enrty.isIntersecting && !visible){
-        console.log('isIntersecting');
         fixedCTA.style.transform = `translateY(${0}px)`;
         visible = true;
       }
