@@ -1,6 +1,24 @@
-const getUTMParams = function (field) {
+const getUTMParams = function (marketingField, parentEl) {
   const marketingData = window.location.search;
+  const marketingFieldInput = document.querySelector(`${marketingField}`);
 
-  const marketingField = document.querySelector(`${field}`);
-  marketingField && (marketingField.value = marketingData);
+  const params = new URLSearchParams(marketingData);
+
+  const utmObj = {};
+
+  const fieldHTML = function (name, value) {
+    return `<input type="hidden" name="${name}" value="${value}">`;
+  };
+
+  const parentElement = document.querySelector(`${parentEl}`);
+
+  params.forEach((value, key) => {
+    utmObj[key] = value;
+    const marketingField = fieldHTML(key, value);
+
+    parentElement.insertAdjacentHTML("beforeend", marketingField);
+  });
+
+  marketingFieldInput && (marketingFieldInput.value = marketingData.slice(1));
+
 };
