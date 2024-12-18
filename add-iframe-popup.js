@@ -1,4 +1,4 @@
-const addIframePopup = function (targetEl=`[data-flow="free-trial"]`, popupRequired=true, iframeURL="https://shvasa-staging-web.vercel.app/widgets?widget=loginPopup-v2") {
+const addIframePopup = function (targetEl=`[data-flow="free-trial"]`, popupRequired=true, iframeURL="https://shvasa-staging-web.vercel.app/widgets?widget=loginPopup-v2", allowCameraMic=false) {
   // Guard Close
   if (!popupRequired) return;
   
@@ -17,7 +17,7 @@ const addIframePopup = function (targetEl=`[data-flow="free-trial"]`, popupRequi
   <div class="iframe-popup-container">
     <div class="iframe-popup-wrapper">
       <div class="iframe-popup w-embed w-iframe">
-        <iframe class="iframe-popup" src="${iframeURL}&${pageUrl}"></iframe>
+        <iframe ${allowCameraMic ? 'allow="camera *;microphone *"' : '' } class="iframe-popup" src="${iframeURL}&${pageUrl}"></iframe>
       </div>
       <div class="iframe-popup-close-btn-wrapper w-embed">
         <svg class="iframe-popup-close-btn" width="100%" height="100%" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
