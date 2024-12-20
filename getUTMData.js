@@ -50,6 +50,7 @@ const getUTMParams = function (marketingField, parentEl) {
     );
   });
 
-  marketingFieldInputArr > 0 &&
+  marketingFieldInputArr.length > 0 &&
     (marketingFieldInputArr.value = marketingData.slice(1));
 };
+
