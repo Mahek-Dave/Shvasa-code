@@ -51,6 +51,5 @@ const getUTMParams = function (marketingField, parentEl) {
   });
 
   marketingFieldInputArr.length > 0 &&
-    (marketingFieldInputArr.value = marketingData.slice(1));
+    (marketingFieldInputArr.forEach(field=>field.value = marketingData.slice(1)));
 };
-
