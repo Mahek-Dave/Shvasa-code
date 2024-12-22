@@ -75,6 +75,6 @@ const addTeachersData = async function () {
     addHTML(parentEl, html);
   });
 
-  reinitializeWebflowSlider();
+  //reinitializeWebflowSlider();
 };
 addTeachersData();
