@@ -27,7 +27,8 @@
   // Elements
   const allBtns = [...document.querySelectorAll(".free-trial-wrapper")];
   //const closeBtn = document.querySelector(".close-signup-popup");
-  const mainBody = document.querySelector(".page-wrapper");
+  //const mainBody = document.querySelector(".page-wrapper");
+  const mainBody = document.body
 
   // Display popup
   const showPopup = () => {
