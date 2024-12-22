@@ -17,8 +17,6 @@ const addTeachersData = async function () {
   };
 
   const reinitializeWebflowSlider = function () {
-    window.Webflow && window.Webflow.destroy();
-    window.Webflow && window.Webflow.ready();
     window.Webflow && window.Webflow.require("slider").redraw();
   };
 
