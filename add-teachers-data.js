@@ -2,7 +2,7 @@ const addTeachersData = async function () {
   const parentEl = document.querySelector(".teacher-slider-mask");
 
   const getTeachersData = async function () {
-    const url = "https://services.truyoga.in/api/teacher/getBestTeachers";
+    const url = "https://services.shvasa.com/api/teacher/getBestTeachers";
     try {
       const response = await fetch(url);
       if (!response.ok) {
