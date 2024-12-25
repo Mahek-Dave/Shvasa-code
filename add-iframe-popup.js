@@ -1,11 +1,12 @@
 const addIframePopup = function (targetEl=`[data-flow="free-trial"]`, popupRequired=true, iframeURL="https://shvasa-staging-web.vercel.app/widgets?widget=loginPopup-v2", allowCameraMic=false) {
-  // Guard Close
-  if (!popupRequired) return;
   
   // Elements
   const allBtns = [...document.querySelectorAll(targetEl)];
   const mainBody = document.body;
   let popup,closeBtn;
+
+  // Guard Close
+  if (!popupRequired || allBtns.length === 0) return;
 
   let iframeAdded = false;
 
