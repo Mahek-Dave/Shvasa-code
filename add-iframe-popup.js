@@ -1,4 +1,4 @@
-const addIframePopup = function (targetEl=`[data-flow="free-trial"]`, popupRequired=true, iframeURL="https://shvasa-staging-web.vercel.app/widgets?widget=loginPopup-v2", allowCameraMic=false) {
+const addIframePopup = function (targetEl=`[data-flow="free-trial"]`, popupRequired=true, iframeURL="https://app.shvasa.com/widgets?widget=loginPopup-v2", allowCameraMic=false) {
   
   // Elements
   const allBtns = [...document.querySelectorAll(targetEl)];
