@@ -186,7 +186,7 @@
                 </div>
             </div>
             <div id="w-node-_3bb0c6c2-99bb-f448-e7c6-9c2c86184fc3-a152fdd6" class="class-booking-btn-wrapper">
-                <a href="https://app.shvasa.com/book-class?classId=${e?.id}&teacher=${e?.teacherInfo?.name}&time=${e?.classDateTime}" class="primary-button size-small bg-color-accent-tropical-teal-600" data-class-booking-btn="">
+                <a href="https://app.shvasa.com/book-class?classId=${e?.id}&teacher=${e?.teacherInfo?.name}&time=${e?.classDateTime}" class="primary-button size-small bg-color-accent-tropical-teal-600 ${s?"bg-color-accent-red":""}" data-class-booking-btn="">
                 <div data-b5="" class="b5 semi-bold color-white">${s?"Join":"Book"}
                 </div>
             </a>
@@ -194,5 +194,6 @@
         </div>
     `}}var u=new o;let h=async function(e,r){try{await a(e,r),u.setData(t)}catch(e){console.log(e)}};d.addHandlerRender(function(e){try{r(e),d.setData(t),d._addSliderDateData(),d._updateTitle(),d._updateTabLink(),d.controlArrowInteractivity()}catch(e){console.log(e)}}),u.classListRendererHandler(h)})();
 //# sourceMappingURL=controller.js.map
+
 
 
