@@ -73,7 +73,6 @@ const addMasonryReviews = async function () {
                         }
                         loading="lazy" width="102.73788452148438" height="15.865350723266602" alt="5 Star rating"
                         class="lp-v2-testimonial-stars-image"></div>
-                <div class="lp-v2-b7 all-caps" bis_skin_checked="1">Posted NOW</div>
             </div>
             <div class="lp-v2-testimonial-duration-wrapper" bis_skin_checked="1">
                 <div class="lp-v2-b6 font-weight-medium all-caps" bis_skin_checked="1">${timeDiff}</div>
