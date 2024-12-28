@@ -105,7 +105,8 @@ const addMasonryReviews = async function () {
   const renderReviews = function () {
     if (errorOccured) return;
     reviewBlocksWrapper.innerHTML = "";
-    reviews.reviewData.forEach((data) => {
+    reviews.reviewData.forEach((data,i) => {
+      if(i > 14) return;
       const html = generateHTML(data);
       reviewBlocksWrapper.insertAdjacentHTML("beforeend", html);
     });
