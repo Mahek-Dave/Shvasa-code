@@ -15,7 +15,7 @@ const addMasonryReviews = async function () {
   const getReviews = async function () {
     try {
       const res = await fetch(
-        "https://services.shvasa.com/api/class/reviewList"
+        "https://services.shvasa.com/api/class/reviewList?limit=20"
       );
       const data = await res.json();
       reviews.reviewData = await data.body;
