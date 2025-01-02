@@ -110,7 +110,7 @@ const renderDashboardSnaps = async () => {
                   <div class="dashboard-snap-reviewer-details-wrapper" bis_skin_checked="1">
                       <div class="dashboard-snap-reviewer-image-wrapper" bis_skin_checked="1">
                           <div class="${
-                            checkImageExist(data?.actor?.image)
+                            (await checkImageExist(data?.actor?.image))
                               ? "hide-element"
                               : ""
                           }" bis_skin_checked="1">${data?.actor?.name.slice(
