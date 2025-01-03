@@ -152,7 +152,8 @@ const renderDashboardSnaps = async () => {
           ? data?.foreignObject?.teacherImage
           : "https://cdn.prod.website-files.com/67691f03eb5bfa3289b3daed/67691f03eb5bfa3289b3e760_Shvasa%20logo%20art.svg"
       }
-          loading="lazy" alt="" class="dashboard-snap-review-teacher-image-wrapper">
+          loading="lazy" alt="" class="dashboard-snap-review-teacher-image-wrapper ${
+        (await checkImageExist(data?.foreignObject?.teacherImage)) ? '' : 'object-fit-contain'}">
   </div>
       `;
   };
