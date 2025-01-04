@@ -99,6 +99,14 @@ const renderReviewSlides = async () => {
     `;
   };
 
+  const redrawSpecificSlider = () => {
+    return new Promise((resolve) => {
+      if (reviewParentEl) {
+        window.Webflow.require("slider").redraw(reviewObject.reviewParentEl); // Redraw the specific slider
+      }
+      resolve(); // Resolve after the redraw is triggered
+    });
+  };
 
   reviewObject.reviewParentEl.innerHTML = "";
 
@@ -107,6 +115,6 @@ const renderReviewSlides = async () => {
     reviewObject.reviewParentEl.insertAdjacentHTML("beforeend", html);
   }
 
-  window.Webflow.require("slider").redraw(reviewObject.reviewParentEl);
+  await redrawSpecificSlider();
 };
 renderReviewSlides();
