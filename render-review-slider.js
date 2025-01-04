@@ -103,7 +103,7 @@ const renderReviewSlides = async () => {
 
   for (const [i, rev] of reviewObject.reviewsArr.entries()) {
     const html = await generateMarkup(rev, i);
-    reviewObject.reviewParentEl.insertAdjacentHTML("beforeend", html);
   }
+
+  window.Webflow.require("slider").redraw(); 
 };
-renderReviewSlides();
