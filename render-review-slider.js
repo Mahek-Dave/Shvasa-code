@@ -101,7 +101,7 @@ const renderReviewSlides = async () => {
 
   const redrawSpecificSlider = () => {
     return new Promise((resolve) => {
-      if (reviewParentEl) {
+      if (reviewObject.reviewParentEl) {
         window.Webflow.require("slider").redraw(reviewObject.reviewParentEl); // Redraw the specific slider
       }
       resolve(); // Resolve after the redraw is triggered
