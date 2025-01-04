@@ -107,6 +107,6 @@ const renderReviewSlides = async () => {
     reviewObject.reviewParentEl.insertAdjacentHTML("beforeend", html);
   }
 
-  window.Webflow.require("slider").redraw(reviewParentEl);
+  window.Webflow.require("slider").redraw(reviewObject.reviewParentEl);
 };
 renderReviewSlides();
