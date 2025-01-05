@@ -235,5 +235,13 @@
     `}}var u=new o;let h=async function(e,r){try{await a(e,r),u.setData(t)}catch(e){console.log(e)}};d.addHandlerRender(function(e){try{r(e),d.setData(t),d._addSliderDateData(),d._updateTitle(),d._updateTabLink(),d.controlArrowInteractivity()}catch(e){console.log(e)}}),u.classListRendererHandler(h)})();
 //# sourceMappingURL=controller.js.map
 
+if(new Date().getDay() === 0) {
+        const activeDate = document.querySelector(`[data-week="Previous"]`);
+
+    activeDate.addEventListener('click', e => e.preventDefault());
+
+    activeDate.click();
+}
+
 
 
