@@ -63,3 +63,4 @@ const renderLeaderboard = async function () {
     leaderboardData.yearParentEl.insertAdjacentHTML("beforeend", HTML);
   });
 };
+renderLeaderboard();
