@@ -113,3 +113,4 @@ const addMasonryReviews = async function () {
   };
   renderReviews();
 };
+addMasonryReviews();
