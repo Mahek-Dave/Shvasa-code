@@ -85,7 +85,7 @@ const renderDashboardSnaps = async () => {
       style=""
       muted="" playsinline="" data-wf-ignore="true" data-object-fit="cover">
       <source
-          src=${data?.object?.video?.at(0)}
+          src=${data?.object?.video?.at(0).url}
           data-wf-ignore="true">
   </video>
       `;
