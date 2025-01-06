@@ -245,3 +245,4 @@ const renderDashboardSnaps = async () => {
     await postHTMLMarkupGenerator(allDataObj.post)
   );
 };
+renderDashboardSnaps();
