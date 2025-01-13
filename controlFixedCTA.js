@@ -6,7 +6,10 @@ const controlFixedCTAVisibility = function (
 ) {
   const target = document.querySelector(`.${targetClass}`);
   const fixedCTA = document.querySelector(`.${CTA}`);
-  const fixedCTAData = fixedCTA.getClientRects()[0];
+  // const fixedCTAData = fixedCTA.getClientRects()[0];
+
+  console.log(target)
+  console.log(fixedCTA)
 
   let visible = false;
 
