@@ -1,4 +1,4 @@
-const addIframePopup = function (targetEl=`[data-flow="free-trial"]`, popupRequired=true, iframeURL="https://app.shvasa.com/widgets?widget=loginPopup-v2", allowCameraMic=false) {
+const addIframePopup = function (targetEl=`[data-flow="free-trial"]`, popupRequired=true, iframeURL="https://app.shvasa.com/widgets?widget=loginPopup-v2", redirectURL="https://app.shvasa.com/dashboard?widget=loginpopup", allowCameraMic=false) {
   
   // Elements
   const allBtns = [...document.querySelectorAll(targetEl)];
@@ -76,7 +76,7 @@ const addIframePopup = function (targetEl=`[data-flow="free-trial"]`, popupRequi
     // Message received from child
     if (event.data?.event === "loggedIn") {
       window.location =
-        "https://app.shvasa.com/dashboard?widget=loginpopup&token=" +
+        `${redirectURL}&token=` +
         event.data?.token;
     }
   });
