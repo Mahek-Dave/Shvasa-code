@@ -43,7 +43,7 @@ const addTeachersData = async function () {
                                 <div class="b6 medium">${
                                   data?.teacherDetails?.avgRating
                                 }</div><img
-                                    src="https://cdn.prod.website-files.com/67337f0d7f84f5bca152fdca/67344c1a3846ba451784cdc5_Vectors-Wrapper.svg"
+                                    src="https://cdn.prod.website-files.com/67691f03eb5bfa3289b3daed/676fadaa786e3850326275c2_5%20stars%20review.svg"
                                     loading="lazy" width="77.70390319824219" height="11.9990234375" alt=""
                                     class="vectors-wrapper">
                             </div>
