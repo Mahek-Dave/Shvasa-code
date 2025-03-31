@@ -1,4 +1,4 @@
-const addIframePopup = function (targetEl=`[data-flow="free-trial"]`, popupRequired=true, iframeURL="https://app.shvasa.com/widgets?widget=loginPopup-v2", redirectURL="https://app.shvasa.com/dashboard?widget=loginpopup", allowCameraMic=false) {
+const addIframePopup = function (targetEl=`[data-flow="free-trial"]`, popupRequired=true, iframeURL="https://app.shvasa.com/widgets?widget=loginPopup-v2", redirectURL="https://app.shvasa.com/dashboard?widget=loginpopup", allowCameraMic=false, productID=undefined) {
   
   // Elements
   const allBtns = [...document.querySelectorAll(targetEl)];
@@ -8,17 +8,21 @@ const addIframePopup = function (targetEl=`[data-flow="free-trial"]`, popupRequi
   // Guard Close
   if (!popupRequired || allBtns.length === 0) return;
 
-  let iframeAdded = false;
+  let iframeAdded = false; 
 
   // Get url to fetch UTM paras
   const pageUrl = encodeURIComponent(window.location.href);
+
+  // ProductID
+  const checkProductID = productID ? `&productID=${productID}` : "";
+  console.log(checkProductID, productID )
 
   // iframe
   const iframeHTML = `
   <div class="iframe-popup-container">
     <div class="iframe-popup-wrapper">
       <div class="iframe-popup w-embed w-iframe">
-        <iframe ${allowCameraMic ? 'allow="camera *;microphone *; display-capture *"' : '' } class="iframe-popup" src="${iframeURL}&url=${pageUrl}"></iframe>
+        <iframe ${allowCameraMic ? 'allow="camera *;microphone *; display-capture *"' : '' } class="iframe-popup" src="${iframeURL}&url=${pageUrl}checkProductID></iframe>
       </div>
       <div class="iframe-popup-close-btn-wrapper w-embed">
         <svg class="iframe-popup-close-btn" width="100%" height="100%" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
