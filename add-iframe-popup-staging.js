@@ -46,7 +46,7 @@ const addIframePopup = function ({
   </div>
   `;
 
-  Add popup to body
+  // Add popup to body
   const addPopup = (html) => {
     document.body.insertAdjacentHTML("beforeend", html);
     closeBtn = document.querySelector(".iframe-popup-close-btn");
