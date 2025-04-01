@@ -1,4 +1,4 @@
-7 DAYS TRIAL 
+// 7 DAYS TRIAL 
 const addIframePopup = function ({
   targetEl = `[data-flow="free-trial"]`,
   popupRequired = true,
