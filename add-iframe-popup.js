@@ -1,4 +1,4 @@
-const addIframePopup = function (targetEl=`[data-flow="free-trial"]`, popupRequired=true, iframeURL="https://app.shvasa.com/widgets?widget=loginPopup-v2", redirectURL="https://app.shvasa.com/dashboard?widget=loginpopup", allowCameraMic=false, productID=undefined) {
+const addIframePopup = function (targetEl=`[data-flow="free-trial"]`, popupRequired=true, iframeURL="https://app.shvasa.com/widgets?widget=loginPopup-v2", redirectURL="https://app.shvasa.com/dashboard?widget=loginpopup", allowCameraMic=false, packageId=undefined) {
   
   // Elements
   const allBtns = [...document.querySelectorAll(targetEl)];
@@ -14,8 +14,8 @@ const addIframePopup = function (targetEl=`[data-flow="free-trial"]`, popupRequi
   const pageUrl = encodeURIComponent(window.location.href);
 
   // ProductID
-  const checkProductID = productID ? `&productID=${productID}` : "";
-  console.log(checkProductID, productID )
+  const checkProductID = packageId ? `&packageId=${packageId}` : "";
+  console.log(checkProductID, packageId )
 
   // iframe
   const iframeHTML = `
