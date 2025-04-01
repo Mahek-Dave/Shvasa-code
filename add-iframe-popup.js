@@ -99,7 +99,7 @@
 // TWO DAYS TRIAL 
 
 const addIframePopup = function ({
-  targetEl = `[data-flow="two-day-trial"]`,
+  targetEl = `[data-flow=two-day-trial]`,
   popupRequired = true,
   iframeURL = "https://app.shvasa.com/widgets?widget=loginPopup-v2",
   redirectURL = "https://app.shvasa.com/dashboard?widget=loginpopup",
