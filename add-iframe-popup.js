@@ -184,7 +184,7 @@ const addIframePopup = function ({
   });
 };
 
-// TWO DAYS TRIAL //
+// TWO DAYS TRIAL 
 
 // const addIframePopup = function ({
 //   targetEl = `[data-flow="two-day-trial"]`,
@@ -282,25 +282,3 @@ const addIframePopup = function ({
 //     }
 //   });
 // };
-
-// window.addEventListener("load", () => {
-//   addIframePopup({
-//     targetEl: "[data-flow = two-day-trial]",
-//     iframeURL:
-//       "https://shvasa-staging-web.vercel.app/widgets?widget=loginPopup-v2",
-//     redirectURL:
-//       "https://shvasa-staging-web.vercel.app/dashboard?widget=loginpopup",
-//     packageId: "67ea6b3b6fc0d51de99a859c",
-//     signLabel: "Start%20free%20trial",
-//   });
-// });
-
-// window.addEventListener("load", () => {
-//   addIframePopup({
-//     targetEl: "[data-flow = free-trial]",
-//     iframeURL: "https://app.shvasa.com/widgets?widget=loginPopup-v2",
-//     redirectURL: "https://app.shvasa.com/dashboard?widget=loginpopup",
-//     packageId: "67ea76adea89798f74a19b4a",
-//     signLabel: "Start%207%20day%20free%20trial",
-//   });
-// });
