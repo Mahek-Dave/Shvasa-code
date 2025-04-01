@@ -1,4 +1,4 @@
-const addIframePopup = function (targetEl=`[data-flow="free-trial"]`, popupRequired=true, iframeURL="https://app.shvasa.com/widgets?widget=loginPopup-v2", redirectURL="https://app.shvasa.com/dashboard?widget=loginpopup", allowCameraMic=false, packageId=undefined, signLabel="start%20a%207%20day%20free%20trial") {
+const addIframePopup = function (targetEl=`[data-flow="free-trial"]`, popupRequired=true, iframeURL="https://app.shvasa.com/widgets?widget=loginPopup-v2", redirectURL="https://app.shvasa.com/dashboard?widget=loginpopup", allowCameraMic=false, packageId=undefined, signLabel="Start%20a%207%20day%20free%20trial") {
   
   // Elements
   const allBtns = [...document.querySelectorAll(targetEl)];
