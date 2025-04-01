@@ -145,52 +145,52 @@ const addIframePopup = function ({
   `;
 
   // Add popup to body
-  const addPopup = (html) => {
-    document.body.insertAdjacentHTML("beforeend", html);
-    closeBtn = document.querySelector(".iframe-popup-close-btn");
-    iframeAdded = true;
-  };
+//   const addPopup = (html) => {
+//     document.body.insertAdjacentHTML("beforeend", html);
+//     closeBtn = document.querySelector(".iframe-popup-close-btn");
+//     iframeAdded = true;
+//   };
 
-  addPopup(iframeHTML);
+//   addPopup(iframeHTML);
 
-  // Add popup after page loads
-  window.addEventListener("load", function () {
-    if (iframeAdded === true) return;
-    addPopup(iframeHTML);
-  });
+//   // Add popup after page loads
+//   window.addEventListener("load", function () {
+//     if (iframeAdded === true) return;
+//     addPopup(iframeHTML);
+//   });
 
-  // Display popup
-  const showPopup = () => {
-    if (iframeAdded === false) {
-      addPopup(iframeHTML);
-    }
+//   // Display popup
+//   const showPopup = () => {
+//     if (iframeAdded === false) {
+//       addPopup(iframeHTML);
+//     }
 
-    mainBody.style.overflow = "hidden";
-    closeBtn.style.display = "flex";
-    popup = document.querySelector(".iframe-popup-container");
-    popup.style.display = "flex";
-    iframeAdded = true;
-  };
+//     mainBody.style.overflow = "hidden";
+//     closeBtn.style.display = "flex";
+//     popup = document.querySelector(".iframe-popup-container");
+//     popup.style.display = "flex";
+//     iframeAdded = true;
+//   };
 
-  // Hide popup
-  const closePopup = () => {
-    popup.style.display = "none";
-    closeBtn.style.display = "none";
-    mainBody.style.overflow = "";
-  };
+//   // Hide popup
+//   const closePopup = () => {
+//     popup.style.display = "none";
+//     closeBtn.style.display = "none";
+//     mainBody.style.overflow = "";
+//   };
 
-  // Events
-  allBtns.forEach((btn) => btn.addEventListener("click", showPopup));
-  closeBtn.addEventListener("click", closePopup);
+//   // Events
+//   allBtns.forEach((btn) => btn.addEventListener("click", showPopup));
+//   closeBtn.addEventListener("click", closePopup);
 
-  window.addEventListener("message", function (event) {
-    console.log(
-      "Message received from the child: " + JSON.stringify(event.data)
-    );
+//   window.addEventListener("message", function (event) {
+//     console.log(
+//       "Message received from the child: " + JSON.stringify(event.data)
+//     );
 
-    // Message received from child
-    if (event.data?.event === "loggedIn") {
-      window.location = `${redirectURL}&token=` + event.data?.token;
-    }
-  });
-};
+//     // Message received from child
+//     if (event.data?.event === "loggedIn") {
+//       window.location = `${redirectURL}&token=` + event.data?.token;
+//     }
+//   });
+// };
