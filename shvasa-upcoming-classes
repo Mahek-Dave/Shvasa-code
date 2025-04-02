@@ -128,7 +128,7 @@ const showClasses = function (selectedDate) {
           <div>by ${item?.teacherInfo.name}</div>
           <div class="cta-spots-details">
             <a
-              href="https://app.shvasa.com/book-class?classId=${item?.id}&teacher=${item?.teacherInfo?.name}&time=${item?.classDateTime}${urlParanew}"
+              href="https://app.shvasa.com/book-class?classId=${item?.id}&teacher=${item?.teacherInfo?.name}&time=${item?.classDateTime}${urlParanew}&signLabel=Book%20a%20Free%20Class&packageId=67ea76adea89798f74a19b4a"
               class="upcoming-class-book-btn w-button"
               >Book Class</a
             >
