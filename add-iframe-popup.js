@@ -119,7 +119,8 @@ const addIframePopup = function ({
 
   // Get url to fetch UTM paras
   // const pageUrl = encodeURIComponent(window.location.href);
-
+  
+  // Get url to fetch UTM paras
   const pageUrl = new URL(window.location.href);
   const params = new URLSearchParams(pageUrl.search);
   // If utm_campaign is missing, set it to the route
