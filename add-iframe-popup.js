@@ -118,7 +118,21 @@ const addIframePopup = function ({
   let iframeAdded = false;
 
   // Get url to fetch UTM paras
-  const pageUrl = encodeURIComponent(window.location.href);
+  // const pageUrl = encodeURIComponent(window.location.href);
+
+  const pageUrl = new URL(window.location.href);
+  const params = new URLSearchParams(pageUrl.search);
+  // If utm_campaign is missing, set it to the route
+  if (!params.has("utm_campaign")) {
+    const pathSegments = pageUrl.pathname.split("/");
+    const route = pathSegments[pathSegments.length - 1];
+    params.set("utm_campaign", route);
+  }
+  // Create a new URL string with updated params (but don't change the real URL)
+  const updatedUrl = `${pageUrl.origin}${pageUrl.pathname}?${params.toString()}`;
+  const newUrl = encodeURIComponent(updatedUrl);
+  console.log("Final pageUrl:", newUrl);
+
 
   // ProductID Check
   const checkProductID = packageId ? `&packageId=${packageId}` : "";
@@ -133,7 +147,7 @@ const addIframePopup = function ({
           allowCameraMic
             ? 'allow="camera *;microphone *; display-capture *"'
             : ""
-        } class="iframe-popup" src="${iframeURL}&url=${pageUrl}&signLabel=${signLabel}${checkProductID}"></iframe>
+        } class="iframe-popup" src="${iframeURL}&url=${newUrl}&signLabel=${signLabel}${checkProductID}"></iframe>
       </div>
       <div class="iframe-popup-close-btn-wrapper w-embed">
         <svg class="iframe-popup-close-btn" width="100%" height="100%" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
