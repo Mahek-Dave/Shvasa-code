@@ -300,7 +300,7 @@ const controlFormDataSending = async function () {
 
   // AJAX Call to post data
   const sendFormData = async function (finalObj) {
-    const url = "https://services.shvasa.com/api/applications/teacher";
+    const url = "https://services.shvasa.com/api/applications/job-apply";
     const params = {
       method: "POST",
       headers: {
