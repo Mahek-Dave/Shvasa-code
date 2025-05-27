@@ -240,6 +240,17 @@ const renderDashboardSnaps = async () => {
     await reviewHTMLMarkupGenerator(allDataObj.review)
   );
 
+// Trimming the review text
+const reviewTextElement = document.querySelectorAll('.dashboard-snap-review-text')[1];
+if (reviewTextElement) {
+  const fullText = reviewTextElement.textContent;
+  const lastNewlineIndex = fullText.lastIndexOf('\n');
+  const newText = lastNewlineIndex !== -1
+    ? fullText.substring(0, lastNewlineIndex).trim()
+    : fullText.trim();
+  reviewTextElement.textContent = newText;
+}
+
   allDataObj.postParentEl.insertAdjacentHTML(
     "beforeend",
     await postHTMLMarkupGenerator(allDataObj.post)
