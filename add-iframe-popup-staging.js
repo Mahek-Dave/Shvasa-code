@@ -53,13 +53,13 @@ const addIframePopupStaging = function ({
     iframeAdded = true;
   };
 
-  addPopup(iframeHTML);
+  // addPopup(iframeHTML);
 
-  // Add popup after page loads
-  window.addEventListener("load", function () {
-    if (iframeAdded === true) return;
-    addPopup(iframeHTML);
-  });
+  // // Add popup after page loads
+  // window.addEventListener("load", function () {
+  //   if (iframeAdded === true) return;
+  //   addPopup(iframeHTML);
+  // });
 
   // Display popup
   const showPopup = () => {
@@ -81,18 +81,39 @@ const addIframePopupStaging = function ({
     mainBody.style.overflow = "";
   };
 
-  // Events
-  allBtns.forEach((btn) => btn.addEventListener("click", showPopup));
-  closeBtn.addEventListener("click", closePopup);
+  // // Events
+  // allBtns.forEach((btn) => btn.addEventListener("click", showPopup));
+  // closeBtn.addEventListener("click", closePopup);
 
-  window.addEventListener("message", function (event) {
-    console.log(
-      "Message received from the child: " + JSON.stringify(event.data)
-    );
+  // window.addEventListener("message", function (event) {
+  //   console.log(
+  //     "Message received from the child: " + JSON.stringify(event.data)
+  //   );
 
-    // Message received from child
-    if (event.data?.event === "loggedIn") {
-      window.location = `${redirectURL}&token=` + event.data?.token;
+  //   // Message received from child
+  //   if (event.data?.event === "loggedIn") {
+  //     window.location = `${redirectURL}&token=` + event.data?.token;
+  //   }
+  // });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    allBtns.forEach((btn) => {
+      btn.addEventListener("click", function() {
+        showPopup(); 
+      });
+    });
+
+    window.addEventListener("message", function (event) {
+      console.log("Message received from the child: " + JSON.stringify(event.data));
+
+      if (event.data?.event === "loggedIn") {
+        window.location = `${redirectURL}&token=` + event.data?.token; 
+      }
+    });
+
+    if (!iframeAdded) {
+      addPopup(iframeHTML);
     }
   });
+  closeBtn?.addEventListener("click", closePopup);
 };
