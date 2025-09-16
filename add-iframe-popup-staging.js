@@ -1,6 +1,6 @@
 // TWO DAYS TRIAL 
 
-const addIframePopup = function ({
+const addIframePopupStaging = function ({
   targetEl = `[data-flow=two-day-trial]`,
   popupRequired = true,
   iframeURL = "https://app.shvasa.com/widgets?widget=loginPopup-v2",
