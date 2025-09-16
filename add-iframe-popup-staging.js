@@ -14,19 +14,19 @@ const addIframePopupStaging = function ({
   const mainBody = document.body;
   let popup, closeBtn;
 
-  // Guard Close
+  // Guard Close: If popup is not required or no buttons, exit
   if (!popupRequired || allBtns.length === 0) return;
 
   let iframeAdded = false;
 
-  // Get url to fetch UTM paras
+  // Get URL to fetch UTM parameters
   const pageUrl = encodeURIComponent(window.location.href);
 
   // ProductID Check
   const checkProductID = packageId ? `&packageId=${packageId}` : "";
   console.log(checkProductID, packageId);
 
-  // iframe
+  // iframe HTML structure
   const iframeHTML = `
   <div class="iframe-popup-container">
     <div class="iframe-popup-wrapper">
@@ -53,24 +53,16 @@ const addIframePopupStaging = function ({
     iframeAdded = true;
   };
 
-  addPopup(iframeHTML);
-
-  // Add popup after page loads
-  window.addEventListener("load", function () {
-    if (iframeAdded === true) return;
-    addPopup(iframeHTML);
-  });
-
   // Display popup
   const showPopup = () => {
     if (iframeAdded === false) {
-      addPopup(iframeHTML);
+      addPopup(iframeHTML); // Add popup if not added yet
     }
 
-    mainBody.style.overflow = "hidden";
-    closeBtn.style.display = "flex";
+    mainBody.style.overflow = "hidden"; // Disable page scroll when popup is open
+    closeBtn.style.display = "flex"; // Show close button
     popup = document.querySelector(".iframe-popup-container");
-    popup.style.display = "flex";
+    popup.style.display = "flex"; // Show the popup
     iframeAdded = true;
   };
 
@@ -78,42 +70,34 @@ const addIframePopupStaging = function ({
   const closePopup = () => {
     popup.style.display = "none";
     closeBtn.style.display = "none";
-    mainBody.style.overflow = "";
+    mainBody.style.overflow = ""; // Restore page scroll
   };
 
-  // Events
-  allBtns.forEach((btn) => btn.addEventListener("click", showPopup));
-  closeBtn.addEventListener("click", closePopup);
-
-  window.addEventListener("message", function (event) {
-    console.log(
-      "Message received from the child: " + JSON.stringify(event.data)
-    );
-
-    // Message received from child
-    if (event.data?.event === "loggedIn") {
-      window.location = `${redirectURL}&token=` + event.data?.token;
-    }
-  });
-
+  // Wait for DOMContentLoaded to ensure all elements are available
   document.addEventListener("DOMContentLoaded", function () {
+    // Ensure that the popup is added as soon as DOM is ready, but do not show it until clicked
+    if (!iframeAdded) {
+      addPopup(iframeHTML);
+    }
+
+    // Add event listeners for buttons to show the popup
     allBtns.forEach((btn) => {
-      btn.addEventListener("click", function() {
-        showPopup(); 
+      btn.addEventListener("click", function () {
+        showPopup(); // Show popup on button click
       });
     });
 
+    // Add event listener for messages from the iframe (login status)
     window.addEventListener("message", function (event) {
       console.log("Message received from the child: " + JSON.stringify(event.data));
 
       if (event.data?.event === "loggedIn") {
-        window.location = `${redirectURL}&token=` + event.data?.token; 
+        window.location = `${redirectURL}&token=` + event.data?.token; // Redirect with token
       }
     });
 
-    if (!iframeAdded) {
-      addPopup(iframeHTML);
-    }
+    // Add close button event listener only after the popup is added
+    closeBtn?.addEventListener("click", closePopup);
   });
-  closeBtn?.addEventListener("click", closePopup);
 };
+
