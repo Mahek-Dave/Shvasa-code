@@ -1,8 +1,5 @@
 // TWO DAYS TRIAL 
 
-
-// TWO DAYS TRIAL 
-
 const addIframePopupStaging = function ({
   targetEl = `[data-flow=two-day-trial]`,
   popupRequired = true,
