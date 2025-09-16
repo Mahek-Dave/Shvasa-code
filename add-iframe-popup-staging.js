@@ -31,7 +31,7 @@ const addIframePopupStaging = function ({
   <div class="iframe-popup-container">
     <div class="iframe-popup-wrapper">
       <div class="iframe-popup w-embed w-iframe">
-        <iframe loading="lazy" ${
+        <iframe ${
           allowCameraMic
             ? 'allow="camera *;microphone *; display-capture *"'
             : ""
