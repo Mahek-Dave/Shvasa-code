@@ -1,6 +1,6 @@
 // TWO DAYS TRIAL 
 
-/*const addIframePopupStaging = function ({
+const addIframePopupStaging = function ({
   targetEl = `[data-flow=two-day-trial]`,
   popupRequired = true,
   iframeURL = "https://app.shvasa.com/widgets?widget=loginPopup-v2",
@@ -96,7 +96,10 @@
     }
   });
 };
-*/
+
+
+/*
+Adding multiple popups with different packageId and all - CSS not loading for container
 
 const addIframePopupStaging = function ({
   targetEl = `[data-flow=two-day-trial]`,
@@ -210,3 +213,4 @@ const addIframePopupStaging = function ({
     }
   });
 };
+*/
