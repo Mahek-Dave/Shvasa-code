@@ -1,5 +1,91 @@
 // TWO DAYS TRIAL 
 
+
+const addIframePopupStaging = function ({
+  targetEl = `[data-flow=two-day-trial]`,
+  popupRequired = true,
+  iframeURL = "https://app.shvasa.com/widgets?widget=loginPopup-v2",
+  redirectURL = "https://app.shvasa.com/dashboard?widget=loginpopup",
+  allowCameraMic = false,
+  packageId = "67ea76adea89798f74a19b4a",
+  signLabel = "Start%20your%203-day%20free%20trial",
+} = {}) {
+  const allBtns = [...document.querySelectorAll(targetEl)];
+
+  if (!popupRequired || allBtns.length === 0) return;
+
+  // Build URL params once
+  const pageUrl = new URL(window.location.href);
+  const params = new URLSearchParams(pageUrl.search);
+  if (!params.has("utm_campaign")) {
+    const pathSegments = pageUrl.pathname.split("/");
+    params.set("utm_campaign", pathSegments[pathSegments.length - 1]);
+  }
+  const newUrl = encodeURIComponent(`${pageUrl.origin}${pageUrl.pathname}?${params.toString()}`);
+  const checkProductID = packageId ? `&packageId=${packageId}` : "";
+
+  let popup = null;
+  let closeBtn = null;
+
+  // ✅ Only build and inject the iframe when the user first clicks
+  const buildPopup = () => {
+    if (popup) return; // Already built
+
+    const iframeHTML = `
+      <div class="iframe-popup-container" style="display:none">
+        <iframe
+          src="${iframeURL}&signLabel=${signLabel}${checkProductID}&redirectURL=${redirectURL}&pageUrl=${newUrl}"
+          loading="lazy"
+          ${allowCameraMic ? `allow="camera; microphone"` : ""}
+          frameborder="0"
+        ></iframe>
+      </div>
+      <button class="iframe-popup-close-btn" style="display:none">✕</button>
+    `;
+
+    document.body.insertAdjacentHTML("beforeend", iframeHTML);
+    popup = document.querySelector(".iframe-popup-container");
+    closeBtn = document.querySelector(".iframe-popup-close-btn");
+
+    closeBtn.addEventListener("click", closePopup);
+  };
+
+  const showPopup = () => {
+    buildPopup(); // No-op after first call
+    document.body.style.overflow = "hidden";
+    popup.style.display = "flex";
+    closeBtn.style.display = "flex";
+  };
+
+  const closePopup = () => {
+    popup.style.display = "none";
+    closeBtn.style.display = "none";
+    document.body.style.overflow = "";
+  };
+
+  allBtns.forEach((btn) => btn.addEventListener("click", showPopup));
+
+  window.addEventListener("message", (event) => {
+    if (event.data?.event === "loggedIn") {
+      window.location = `${redirectURL}&token=${event.data?.token}`;
+    }
+  });
+};
+
+const onFirstInteraction = (fn) => {
+  const events = ["mousemove", "scroll", "touchstart", "keydown"];
+  const handler = () => {
+    fn();
+    events.forEach(e => window.removeEventListener(e, handler));
+  };
+  events.forEach(e => window.addEventListener(e, handler, { passive: true }));
+};
+
+onFirstInteraction(() => addIframePopup());
+
+
+
+/*
 const addIframePopupStaging = function ({
   targetEl = `[data-flow=two-day-trial]`,
   popupRequired = true,
@@ -96,6 +182,7 @@ const addIframePopupStaging = function ({
     }
   });
 };
+*/
 
 
 /*
