@@ -86,9 +86,10 @@ const onFirstInteraction = (fn) => {
 // ), 3000);
 window.addEventListener('load', function(){
   console.log('calling addIframePopupStaging')
-  setTimeout(() =>
-    onFirstInteraction(() => addIframePopupStaging())
-  ), 3000);
+  setTimeout(
+    () => onFirstInteraction(() => addIframePopupStaging()),
+    3000
+  );
 })
 
 
