@@ -72,6 +72,7 @@ const addIframePopupStaging = function ({
   });
 };
 
+
 const onFirstInteraction = (fn) => {
   const events = ["mousemove", "scroll", "touchstart", "keydown"];
   const handler = () => {
@@ -80,8 +81,9 @@ const onFirstInteraction = (fn) => {
   };
   events.forEach(e => window.addEventListener(e, handler, { passive: true }));
 };
-
-onFirstInteraction(() => addIframePopupStaging());
+setTimeout(() =>
+  onFirstInteraction(() => addIframePopupStaging())
+), 3000);
 
 
 
