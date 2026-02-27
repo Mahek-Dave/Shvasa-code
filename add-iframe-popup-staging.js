@@ -81,10 +81,15 @@ const onFirstInteraction = (fn) => {
   };
   events.forEach(e => window.addEventListener(e, handler, { passive: true }));
 };
-setTimeout(() =>
-  onFirstInteraction(() => addIframePopupStaging())
-), 3000);
-
+// setTimeout(() =>
+//   onFirstInteraction(() => addIframePopupStaging())
+// ), 3000);
+window.addEventListener('load', function(){
+  console.log('calling addIframePopupStaging')
+  setTimeout(() =>
+    onFirstInteraction(() => addIframePopupStaging())
+  ), 3000);
+})
 
 
 /*
