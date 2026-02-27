@@ -81,7 +81,7 @@ const onFirstInteraction = (fn) => {
   events.forEach(e => window.addEventListener(e, handler, { passive: true }));
 };
 
-onFirstInteraction(() => addIframePopup());
+onFirstInteraction(() => addIframePopupStaging());
 
 
 
