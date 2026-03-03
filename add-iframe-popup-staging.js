@@ -10,66 +10,84 @@ const addIframePopupStaging = function ({
   packageId = "67ea76adea89798f74a19b4a",
   signLabel = "Start%20your%203-day%20free%20trial",
 } = {}) {
-  const allBtns = [...document.querySelectorAll(targetEl)];
 
+  const allBtns = [...document.querySelectorAll(targetEl)];
   if (!popupRequired || allBtns.length === 0) return;
 
-  // Build URL params once
+  const mainBody = document.body;
+
+  // ---- Build URL exactly like original ----
   const pageUrl = new URL(window.location.href);
   const params = new URLSearchParams(pageUrl.search);
+
   if (!params.has("utm_campaign")) {
     const pathSegments = pageUrl.pathname.split("/");
-    params.set("utm_campaign", pathSegments[pathSegments.length - 1]);
+    const route = pathSegments[pathSegments.length - 1];
+    params.set("utm_campaign", route);
   }
-  const newUrl = encodeURIComponent(`${pageUrl.origin}${pageUrl.pathname}?${params.toString()}`);
+
+  const updatedUrl = `${pageUrl.origin}${pageUrl.pathname}?${params.toString()}`;
+  const newUrl = encodeURIComponent(updatedUrl);
+
   const checkProductID = packageId ? `&packageId=${packageId}` : "";
 
   let popup = null;
   let closeBtn = null;
+  let iframeBuilt = false;
 
-  // ✅ Only build and inject the iframe when the user first clicks
+  // ---- ORIGINAL DOM STRUCTURE PRESERVED ----
   const buildPopup = () => {
-    if (popup) return; // Already built
+    if (iframeBuilt) return;
 
     const iframeHTML = `
-      <div class="iframe-popup-container" style="display:none">
-        <iframe
-          src="${iframeURL}&signLabel=${signLabel}${checkProductID}&redirectURL=${redirectURL}&pageUrl=${newUrl}"
-          loading="lazy"
-          ${allowCameraMic ? `allow="camera; microphone"` : ""}
-          frameborder="0"
-        ></iframe>
+      <div class="iframe-popup-container" style="display:none;">
+        <div class="iframe-popup-wrapper">
+          <div class="iframe-popup w-embed w-iframe">
+            <iframe
+              ${allowCameraMic ? 'allow="camera *;microphone *; display-capture *"' : ""}
+              class="iframe-popup"
+              loading="lazy"
+              src="${iframeURL}&url=${newUrl}&signLabel=${signLabel}${checkProductID}">
+            </iframe>
+          </div>
+          <div class="iframe-popup-close-btn-wrapper w-embed">
+            <svg class="iframe-popup-close-btn" width="100%" height="100%" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 20C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0C15.5228 0 20 4.47715 20 10C20 15.5228 20 10 20 10ZM10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 14.4183 5.58172 14.4183ZM10 8.5858L12.8284 5.75736L14.2426 7.17157L11.4142 10L14.2426 12.8284L12.8284 14.2426L10 11.4142L7.17157 14.2426L5.75736 12.8284L8.5858 10L5.75736 7.17157L7.17157 5.75736L10 8.5858Z" fill="currentColor"></path>
+            </svg>
+          </div>
+        </div>
       </div>
-      <button class="iframe-popup-close-btn" style="display:none">✕</button>
     `;
 
     document.body.insertAdjacentHTML("beforeend", iframeHTML);
+
     popup = document.querySelector(".iframe-popup-container");
     closeBtn = document.querySelector(".iframe-popup-close-btn");
 
     closeBtn.addEventListener("click", closePopup);
+
+    iframeBuilt = true;
   };
 
   const showPopup = () => {
-    buildPopup(); // No-op after first call
-    document.body.style.overflow = "hidden";
+    buildPopup(); // Only builds once
+    mainBody.style.overflow = "hidden";
     popup.style.display = "flex";
-    closeBtn.style.display = "flex";
   };
 
   const closePopup = () => {
     popup.style.display = "none";
-    closeBtn.style.display = "none";
-    document.body.style.overflow = "";
+    mainBody.style.overflow = "";
   };
 
   allBtns.forEach((btn) => btn.addEventListener("click", showPopup));
 
-  window.addEventListener("message", (event) => {
+  window.addEventListener("message", function (event) {
     if (event.data?.event === "loggedIn") {
-      window.location = `${redirectURL}&token=${event.data?.token}`;
+      window.location = `${redirectURL}&token=` + event.data?.token;
     }
   });
+
 };
 
 
