@@ -8,7 +8,7 @@ const addTeachersData = async function () {
       .read-more-btn {
         background: none;
         border: none;
-        color: #6c63ff;
+        color: #fc4456;
         cursor: pointer;
         padding: 0;
         font-size: inherit;
