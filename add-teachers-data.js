@@ -10,7 +10,6 @@ const addStyles = function () {
       font-size: inherit;
       font-family: inherit;
       text-decoration: none;
-      margin-top: 4px;
       display: inline-block;
       transition: opacity 0.2s ease, color 0.2s ease;
     }
