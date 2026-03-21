@@ -1,33 +1,27 @@
-const addStyles = function () {
-  const style = document.createElement("style");
-  style.textContent = `
-    .read-more-btn {
-      background: none;
-      border: none;
-      color: #fc4456;
-      cursor: pointer;
-      padding: 0;
-      font-size: inherit;
-      font-family: inherit;
-      text-decoration: none;
-      display: inline-block;
-      transition: opacity 0.2s ease, color 0.2s ease;
-    }
-    .read-more-btn:hover {
-      opacity: 0.7;
-    }
-    .review-text {
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-    }
-  `;
-  document.head.appendChild(style);
-};
-
-addStyles();
-
 const addTeachersData = async function () {
   const parentEl = document.querySelector(".teacher-slider-mask");
+
+  // Inject styles
+  const addStyles = function () {
+    const style = document.createElement("style");
+    style.textContent = `
+      .read-more-btn {
+        background: none;
+        border: none;
+        color: #6c63ff;
+        cursor: pointer;
+        padding: 0;
+        font-size: inherit;
+        font-family: inherit;
+        text-decoration: none;
+        display: inline;
+      }
+      .read-more-btn:hover {
+        opacity: 0.7;
+      }
+    `;
+    document.head.appendChild(style);
+  };
 
   // Fetch data
   const getTeachersData = async function () {
@@ -37,7 +31,6 @@ const addTeachersData = async function () {
       if (!response.ok) {
         throw new Error(`Response Status: ${response.status}`);
       }
-
       const data = await response.json();
       return data.body || [];
     } catch (error) {
@@ -52,24 +45,23 @@ const addTeachersData = async function () {
   };
 
   const allTeachersData = await getTeachersData();
-  // console.log(allTeachersData);
 
-  // Generate HTML with Read More
+  // Generate HTML
   const generateHTML = function (data, i, arr) {
     const fullText = data?.classFeedback?.text || "";
-    const maxLength = 100;
+    const maxLength = 180;
 
     const isLong = fullText.length > maxLength;
     const shortText = isLong
-      ? fullText.slice(0, maxLength) + "..."
+      ? fullText.slice(0, maxLength) + "... "
       : fullText;
 
     return `
       <div class="teacher-slide w-slide" aria-label="${i + 1} of ${arr.length}" role="group">
         <div class="teacher-slide-component-wrapper">
-          
+
           <div class="teacher-slide-text-wrapper">
-            
+
             <div class="teacher-slide-top-div">
               <div class="teacher-slide-name-rating-wrapper">
                 <div class="b2 semi-bold">
@@ -93,14 +85,8 @@ const addTeachersData = async function () {
               data-full="${encodeURIComponent(fullText)}"
               data-short="${encodeURIComponent(shortText)}"
               data-expanded="false">
-              ${shortText}
+              ${shortText}${isLong ? `<button class="read-more-btn" type="button">Read more</button>` : ""}
             </div>
-
-            ${
-              isLong
-                ? `<button class="read-more-btn" type="button">Read more</button>`
-                : ""
-            }
 
           </div>
 
@@ -122,10 +108,10 @@ const addTeachersData = async function () {
     el.insertAdjacentHTML("beforeend", html);
   };
 
-  // Clear existing slides
+  // Init
+  addStyles();
   parentEl.innerHTML = "";
 
-  // Add slides
   allTeachersData.forEach((teacherData, i, arr) => {
     const html = generateHTML(teacherData, i, arr);
     addHTML(parentEl, html);
@@ -136,24 +122,22 @@ const addTeachersData = async function () {
     if (!e.target.classList.contains("read-more-btn")) return;
 
     const btn = e.target;
-    const textEl = btn.previousElementSibling;
+    const textEl = btn.parentElement; // button is inside the text div
 
     const isExpanded = textEl.dataset.expanded === "true";
-
     const fullText = decodeURIComponent(textEl.dataset.full);
     const shortText = decodeURIComponent(textEl.dataset.short);
 
     if (isExpanded) {
-      textEl.textContent = shortText;
+      textEl.innerHTML =
+        shortText + `<button class="read-more-btn" type="button">Read more</button>`;
       textEl.dataset.expanded = "false";
-      btn.textContent = "Read more";
     } else {
-      textEl.textContent = fullText;
+      textEl.innerHTML =
+        fullText + `<button class="read-more-btn" type="button">Read less</button>`;
       textEl.dataset.expanded = "true";
-      btn.textContent = "Read less";
     }
 
-    // Important for Webflow slider layout
     reinitializeWebflowSlider();
   });
 
