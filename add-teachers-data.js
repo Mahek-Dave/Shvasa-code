@@ -58,7 +58,7 @@ const addTeachersData = async function () {
   // Generate HTML with Read More
   const generateHTML = function (data, i, arr) {
     const fullText = data?.classFeedback?.text || "";
-    const maxLength = 180;
+    const maxLength = 100;
 
     const isLong = fullText.length > maxLength;
     const shortText = isLong
