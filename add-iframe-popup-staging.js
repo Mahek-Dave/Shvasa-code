@@ -1,188 +1,95 @@
-// const addIframePopup = function ({
-//   targetEl = `[data-flow=two-day-trial]`,
-//   popupRequired = true,
-//   iframeURL = "https://app.shvasa.com/widgets?widget=loginPopup-v2",
-//   redirectURL = "https://app.shvasa.com/dashboard?widget=loginpopup",
-//   allowCameraMic = false,
-//   packageId = "67ea76adea89798f74a19b4a",
-//   signLabel = "Start%20your%203-day%20free%20trial",
-// } = {}) {
-//   const allBtns = [...document.querySelectorAll(targetEl)];
-//   if (!popupRequired || allBtns.length === 0) return;
+// CREATED FOR BETTER PERFORMANCE + EARLY LOAD (not approved)
+/*
+const addIframePopup = function ({
+  targetEl = `[data-flow=two-day-trial]`,
+  popupRequired = true,
+  iframeURL = "https://app.shvasa.com/widgets?widget=loginPopup-v2",
+  redirectURL = "https://app.shvasa.com/dashboard?widget=loginpopup",
+  allowCameraMic = false,
+  packageId = "67ea76adea89798f74a19b4a",
+  signLabel = "Start%20your%203-day%20free%20trial",
+} = {}) {
+  const allBtns = [...document.querySelectorAll(targetEl)];
+  if (!popupRequired || allBtns.length === 0) return;
 
-//   const mainBody = document.body;
+  const mainBody = document.body;
 
-//   // ---- Build URL with UTM params ----
-//   const pageUrl = new URL(window.location.href);
-//   const params = new URLSearchParams(pageUrl.search);
-//   if (!params.has("utm_campaign")) {
-//     const pathSegments = pageUrl.pathname.split("/");
-//     const route = pathSegments[pathSegments.length - 1];
-//     params.set("utm_campaign", route);
-//   }
-//   const updatedUrl = `${pageUrl.origin}${pageUrl.pathname}?${params.toString()}`;
-//   const newUrl = encodeURIComponent(updatedUrl);
-//   const checkProductID = packageId ? `&packageId=${packageId}` : "";
+  // ---- Build URL with UTM params ----
+  const pageUrl = new URL(window.location.href);
+  const params = new URLSearchParams(pageUrl.search);
+  if (!params.has("utm_campaign")) {
+    const pathSegments = pageUrl.pathname.split("/");
+    const route = pathSegments[pathSegments.length - 1];
+    params.set("utm_campaign", route);
+  }
+  const updatedUrl = `${pageUrl.origin}${pageUrl.pathname}?${params.toString()}`;
+  const newUrl = encodeURIComponent(updatedUrl);
+  const checkProductID = packageId ? `&packageId=${packageId}` : "";
 
-//   let popup = null;
-//   let closeBtn = null;
-//   let iframeBuilt = false;
+  let popup = null;
+  let closeBtn = null;
+  let iframeBuilt = false;
 
-//   // ---- Build popup DOM (only once) ----
-//   const buildPopup = () => {
-//     if (iframeBuilt) return;
-//     const iframeHTML = `
-//       <div class="iframe-popup-container" style="display:none;">
-//         <div class="iframe-popup-wrapper">
-//           <div class="iframe-popup w-embed w-iframe">
-//             <iframe
-//               ${allowCameraMic ? 'allow="camera *;microphone *; display-capture *"' : ""}
-//               class="iframe-popup"
-//               loading="lazy"
-//               src="${iframeURL}&url=${newUrl}&signLabel=${signLabel}${checkProductID}">
-//             </iframe>
-//           </div>
-//           <div class="iframe-popup-close-btn-wrapper w-embed">
-//             <svg class="iframe-popup-close-btn" width="100%" height="100%" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-//               <path d="M10 20C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0C15.5228 0 20 4.47715 20 10C20 15.5228 15.5228 20 10 20ZM10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18ZM10 8.5858L12.8284 5.75736L14.2426 7.17157L11.4142 10L14.2426 12.8284L12.8284 14.2426L10 11.4142L7.17157 14.2426L5.75736 12.8284L8.5858 10L5.75736 7.17157L7.17157 5.75736L10 8.5858Z" fill="currentColor"></path>
-//             </svg>
-//           </div>
-//         </div>
-//       </div>
-//     `;
-//     document.body.insertAdjacentHTML("beforeend", iframeHTML);
-//     popup = document.querySelector(".iframe-popup-container");
-//     closeBtn = document.querySelector(".iframe-popup-close-btn");
-//     closeBtn.addEventListener("click", closePopup);
-//     iframeBuilt = true;
-//   };
+  // ---- Build popup DOM (only once) ----
+  const buildPopup = () => {
+    if (iframeBuilt) return;
+    const iframeHTML = `
+      <div class="iframe-popup-container" style="display:none;">
+        <div class="iframe-popup-wrapper">
+          <div class="iframe-popup w-embed w-iframe">
+            <iframe
+              ${allowCameraMic ? 'allow="camera *;microphone *; display-capture *"' : ""}
+              class="iframe-popup"
+              loading="lazy"
+              src="${iframeURL}&url=${newUrl}&signLabel=${signLabel}${checkProductID}">
+            </iframe>
+          </div>
+          <div class="iframe-popup-close-btn-wrapper w-embed">
+            <svg class="iframe-popup-close-btn" width="100%" height="100%" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 20C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0C15.5228 0 20 4.47715 20 10C20 15.5228 15.5228 20 10 20ZM10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18ZM10 8.5858L12.8284 5.75736L14.2426 7.17157L11.4142 10L14.2426 12.8284L12.8284 14.2426L10 11.4142L7.17157 14.2426L5.75736 12.8284L8.5858 10L5.75736 7.17157L7.17157 5.75736L10 8.5858Z" fill="currentColor"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.insertAdjacentHTML("beforeend", iframeHTML);
+    popup = document.querySelector(".iframe-popup-container");
+    closeBtn = document.querySelector(".iframe-popup-close-btn");
+    closeBtn.addEventListener("click", closePopup);
+    iframeBuilt = true;
+  };
 
-//   const showPopup = () => {
-//     buildPopup();
-//     mainBody.style.overflow = "hidden";
-//     popup.style.display = "flex";
-//   };
+  const showPopup = () => {
+    buildPopup();
+    mainBody.style.overflow = "hidden";
+    popup.style.display = "flex";
+  };
 
-//   const closePopup = () => {
-//     popup.style.display = "none";
-//     mainBody.style.overflow = "";
-//   };
+  const closePopup = () => {
+    popup.style.display = "none";
+    mainBody.style.overflow = "";
+  };
 
-//   // ---- Expose buildPopup so prefetch can call it externally ----
-//   addIframePopup._buildCurrent = buildPopup;
+  // ---- Expose buildPopup so prefetch can call it externally ----
+  addIframePopup._buildCurrent = buildPopup;
 
-//   allBtns.forEach((btn) => btn.addEventListener("click", showPopup));
+  allBtns.forEach((btn) => btn.addEventListener("click", showPopup));
 
-//   window.addEventListener("message", function (event) {
-//     if (event.data?.event === "loggedIn") {
-//       window.location = `${redirectURL}&token=` + event.data?.token;
-//     }
-//   });
-// };
-
-
-
-
-// FINAL BEING USED ============>
-
-// // TWO DAYS TRIAL 
-// const addIframePopupStagingNew = function ({
-//   targetEl = `[data-flow=two-day-trial]`,
-//   popupRequired = true,
-//   iframeURL = "https://app.shvasa.com/widgets?widget=loginPopup-v2",
-//   redirectURL = "https://app.shvasa.com/dashboard?widget=loginpopup",
-//   allowCameraMic = false,
-//   packageId = "67ea76adea89798f74a19b4a",
-//   signLabel = "Start%20your%203-day%20free%20trial",
-// } = {}) {
-
-//   const allBtns = [...document.querySelectorAll(targetEl)];
-//   if (!popupRequired || allBtns.length === 0) return;
-
-//   const mainBody = document.body;
-
-//   // ---- Build URL exactly like original ----
-//   const pageUrl = new URL(window.location.href);
-//   const params = new URLSearchParams(pageUrl.search);
-
-//   if (!params.has("utm_campaign")) {
-//     const pathSegments = pageUrl.pathname.split("/");
-//     const route = pathSegments[pathSegments.length - 1];
-//     params.set("utm_campaign", route);
-//   }
-
-//   const updatedUrl = `${pageUrl.origin}${pageUrl.pathname}?${params.toString()}`;
-//   const newUrl = encodeURIComponent(updatedUrl);
-
-//   const checkProductID = packageId ? `&packageId=${packageId}` : "";
-
-//   let popup = null;
-//   let closeBtn = null;
-//   let iframeBuilt = false;
-
-//   // ---- ORIGINAL DOM STRUCTURE PRESERVED ----
-//   const buildPopup = () => {
-//     if (iframeBuilt) return;
-
-//     const iframeHTML = `
-//       <div class="iframe-popup-container" style="display:none;">
-//         <div class="iframe-popup-wrapper">
-//           <div class="iframe-popup w-embed w-iframe">
-//             <iframe
-//               ${allowCameraMic ? 'allow="camera *;microphone *; display-capture *"' : ""}
-//               class="iframe-popup"
-//               loading="lazy"
-//               src="${iframeURL}&url=${newUrl}&signLabel=${signLabel}${checkProductID}">
-//             </iframe>
-//           </div>
-//           <div class="iframe-popup-close-btn-wrapper w-embed">
-//             <svg class="iframe-popup-close-btn" width="100%" height="100%" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-//               <path d="M10 20C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0C15.5228 0 20 4.47715 20 10C20 15.5228 15.5228 20 10 20ZM10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18ZM10 8.5858L12.8284 5.75736L14.2426 7.17157L11.4142 10L14.2426 12.8284L12.8284 14.2426L10 11.4142L7.17157 14.2426L5.75736 12.8284L8.5858 10L5.75736 7.17157L7.17157 5.75736L10 8.5858Z" fill="currentColor"></path>
-//             </svg>
-//           </div>
-//         </div>
-//       </div>
-//     `;
-
-//     document.body.insertAdjacentHTML("beforeend", iframeHTML);
-
-//     popup = document.querySelector(".iframe-popup-container");
-//     closeBtn = document.querySelector(".iframe-popup-close-btn");
-
-//     closeBtn.addEventListener("click", closePopup);
-
-//     iframeBuilt = true;
-//   };
-
-//   const showPopup = () => {
-//     buildPopup(); // Only builds once
-//     mainBody.style.overflow = "hidden";
-//     popup.style.display = "flex";
-//   };
-
-//   const closePopup = () => {
-//     popup.style.display = "none";
-//     mainBody.style.overflow = "";
-//   };
-
-//   allBtns.forEach((btn) => btn.addEventListener("click", showPopup));
-
-//   window.addEventListener("message", function (event) {
-//     if (event.data?.event === "loggedIn") {
-//       window.location = `${redirectURL}&token=` + event.data?.token;
-//     }
-//   });
-
-// };
+  window.addEventListener("message", function (event) {
+    if (event.data?.event === "loggedIn") {
+      window.location = `${redirectURL}&token=` + event.data?.token;
+    }
+  });
+};
+*/
 
 
 
 
 
-
-
-
-/*const addIframePopupStaging = function ({
+// FINAL USED FOR BETTER PERFORMANCE ============>
+/*
+const addIframePopup = function ({
   targetEl = `[data-flow=two-day-trial]`,
   popupRequired = true,
   iframeURL = "https://app.shvasa.com/widgets?widget=loginPopup-v2",
@@ -270,26 +177,6 @@
   });
 
 };
-
-
-const onFirstInteraction = (fn) => {
-  const events = ["mousemove", "scroll", "touchstart", "keydown"];
-  const handler = () => {
-    fn();
-    events.forEach(e => window.removeEventListener(e, handler));
-  };
-  events.forEach(e => window.addEventListener(e, handler, { passive: true }));
-};
-// setTimeout(() =>
-//   onFirstInteraction(() => addIframePopupStaging())
-// ), 3000);
-window.addEventListener('load', function(){
-  console.log('calling addIframePopupStaging')
-  setTimeout(
-    () => onFirstInteraction(() => addIframePopupStaging()),
-    3000
-  );
-})
 */
 
 
@@ -298,15 +185,15 @@ window.addEventListener('load', function(){
 
 
 
-
-const addIframePopupStaging = function ({
+// EARLIER CODE 
+const addIframePopup = function ({
   targetEl = `[data-flow=two-day-trial]`,
   popupRequired = true,
   iframeURL = "https://app.shvasa.com/widgets?widget=loginPopup-v2",
   redirectURL = "https://app.shvasa.com/dashboard?widget=loginpopup",
   allowCameraMic = false,
   packageId = "67ea76adea89798f74a19b4a",
-  signLabel = "Book%20a%20Free%20Class",
+  signLabel = "Start%20your%203-day%20free%20trial",
 } = {}) {
   // Elements
   const allBtns = [...document.querySelectorAll(targetEl)];
@@ -319,7 +206,22 @@ const addIframePopupStaging = function ({
   let iframeAdded = false;
 
   // Get url to fetch UTM paras
-  const pageUrl = encodeURIComponent(window.location.href);
+  // const pageUrl = encodeURIComponent(window.location.href);
+  
+  // Get url to fetch UTM paras
+  const pageUrl = new URL(window.location.href);
+  const params = new URLSearchParams(pageUrl.search);
+  // If utm_campaign is missing, set it to the route
+  if (!params.has("utm_campaign")) {
+    const pathSegments = pageUrl.pathname.split("/");
+    const route = pathSegments[pathSegments.length - 1];
+    params.set("utm_campaign", route);
+  }
+  // Create a new URL string with updated params (but don't change the real URL)
+  const updatedUrl = `${pageUrl.origin}${pageUrl.pathname}?${params.toString()}`;
+  const newUrl = encodeURIComponent(updatedUrl);
+  console.log("Final pageUrl:", newUrl);
+
 
   // ProductID Check
   const checkProductID = packageId ? `&packageId=${packageId}` : "";
@@ -334,7 +236,7 @@ const addIframePopupStaging = function ({
           allowCameraMic
             ? 'allow="camera *;microphone *; display-capture *"'
             : ""
-        } class="iframe-popup" src="${iframeURL}&url=${pageUrl}&signLabel=${signLabel}${checkProductID}"></iframe>
+        } class="iframe-popup" src="${iframeURL}&url=${newUrl}&signLabel=${signLabel}${checkProductID}"></iframe>
       </div>
       <div class="iframe-popup-close-btn-wrapper w-embed">
         <svg class="iframe-popup-close-btn" width="100%" height="100%" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
