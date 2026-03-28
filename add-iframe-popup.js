@@ -101,7 +101,8 @@
 
 
 
-// 3 days FT
+// 3 days FT - BETTER PERFORMANCE CODE - USED
+/*
 const addIframePopup = function ({
   targetEl = `[data-flow=two-day-trial]`,
   popupRequired = true,
@@ -190,7 +191,7 @@ const addIframePopup = function ({
   });
 
 };
-
+*/
 
 
 
@@ -199,7 +200,6 @@ const addIframePopup = function ({
 
 
 // TWO DAYS TRIAL OLD VERSION
-/*
 const addIframePopup = function ({
   targetEl = `[data-flow=two-day-trial]`,
   popupRequired = true,
@@ -311,4 +311,5 @@ const addIframePopup = function ({
     }
   });
 };
-*/
+
+
