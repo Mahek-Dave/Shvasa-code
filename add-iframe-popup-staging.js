@@ -1,5 +1,4 @@
 // CREATED FOR BETTER PERFORMANCE + EARLY LOAD (not approved)
-/*
 const addIframePopup = function ({
   targetEl = `[data-flow=two-day-trial]`,
   popupRequired = true,
@@ -81,7 +80,6 @@ const addIframePopup = function ({
     }
   });
 };
-*/
 
 
 
@@ -186,7 +184,7 @@ const addIframePopup = function ({
 
 
 // EARLIER CODE 
-const addIframePopup = function ({
+/*const addIframePopup = function ({
   targetEl = `[data-flow=two-day-trial]`,
   popupRequired = true,
   iframeURL = "https://app.shvasa.com/widgets?widget=loginPopup-v2",
@@ -297,7 +295,7 @@ const addIframePopup = function ({
     }
   });
 };
-
+*/
 
 
 
