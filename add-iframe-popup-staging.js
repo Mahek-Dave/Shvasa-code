@@ -1,4 +1,5 @@
 // CREATED FOR BETTER PERFORMANCE + EARLY LOAD (not approved)
+/*
 const addIframePopup = function ({
   targetEl = `[data-flow=two-day-trial]`,
   popupRequired = true,
@@ -80,13 +81,13 @@ const addIframePopup = function ({
     }
   });
 };
-
+*/
 
 
 
 
 // FINAL USED FOR BETTER PERFORMANCE ============>
-/*
+
 const addIframePopup = function ({
   targetEl = `[data-flow=two-day-trial]`,
   popupRequired = true,
@@ -175,7 +176,7 @@ const addIframePopup = function ({
   });
 
 };
-*/
+
 
 
 
