@@ -71,6 +71,7 @@ const addIframePopup = function ({
 
   // ---- Expose buildPopup so prefetch can call it externally ----
   addIframePopup._buildCurrent = buildPopup;
+  addIframePopup._openCurrent = showPopup;  // fix for early click
 
   allBtns.forEach((btn) => btn.addEventListener("click", showPopup));
 
