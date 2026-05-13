@@ -28,7 +28,7 @@ const initYogaRetreat = function () {
       //showModal(".lp-r-slots-form-container");
 
       window.open(
-        "https://api.whatsapp.com/send/?phone=14156530716&text=Hi!+I%27m+interested+in+joining+the+Summer+Yoga+retreat+in+India+this+July.+Please+share+more+details",
+        "https://api.whatsapp.com/send/?phone=14156530716&text=Hi!+I%27m+interested+in+joining+the+Summer+Yoga+retreat+in+India+this+July.+Please+share+more+details.",
         "_blank"
       );
     });
