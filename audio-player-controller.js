@@ -29,6 +29,11 @@ const playAudioPlayer = function () {
   const audioPlayerWrapper = parentBlock.querySelector(".lp-03-reviewer-audio-wrapper");
   const audioPlayer = audioPlayerWrapper.querySelector("audio");
 
+  // Lazily assign the src only when the user actually plays it
+  if (!audioPlayer.src && audioPlayer.dataset.src) {
+    audioPlayer.src = audioPlayer.dataset.src;
+  }
+
   audioPlayer.play();
   toggleVisibility(audioPlayBtn, audioPauseBtn, audioPlayerWrapper, true);
 };
