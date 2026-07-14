@@ -13,62 +13,6 @@ const addIframePopup = function ({
 
   const mainBody = document.body;
 
-  // Inject popup CSS only once
-  if (!document.getElementById("iframe-popup-styles")) {
-    const style = document.createElement("style");
-    style.id = "iframe-popup-styles";
-    style.textContent = `
-      .iframe-popup-container {
-        z-index: 100;
-        background-color: #000000b3;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100vh;
-        padding: 1.875rem;
-        display: none;
-        position: fixed;
-        inset: 0;
-      }
-  
-      .iframe-popup-wrapper {
-        z-index: 10;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        max-width: 1440px;
-        height: 100%;
-        display: flex;
-        position: relative;
-      }
-  
-      .iframe-popup {
-        border: 1px solid #000;
-        border-radius: .625rem;
-        width: 100%;
-        max-width: 1440px;
-        height: 100%;
-        inset: 0;
-        box-shadow: 0 5px 30px rgba(251, 238, 35, 0.1);
-      }
-  
-      .iframe-popup-close-btn-wrapper {
-        color: #fff;
-        cursor: pointer;
-        width: 40px;
-        height: 40px;
-        position: absolute;
-        top: 1.875rem;
-        right: 1.875rem;
-      }
-  
-      .iframe-popup-close-btn-wrapper:hover {
-        color: #fc4456;
-      }
-    `;
-    document.head.appendChild(style);
-  }
-
   // ---- Build URL with UTM params ----
   const pageUrl = new URL(window.location.href);
   const params = new URLSearchParams(pageUrl.search);
