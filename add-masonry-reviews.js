@@ -63,7 +63,7 @@ const addMasonryReviews = async function () {
     const userName = data?.userDetails?.name;
 
     return `
-        <div class="lp-v2-testimonial-block" bis_skin_checked="1">
+        <div class="lp-v2-testimonial-block w-variant-500049d3-051c-5955-c263-76b97c5c2b8d" bis_skin_checked="1">
     <div class="lp-v2-testimonial-blocks-top-part" bis_skin_checked="1">
         <div class="lp-v2-testimonial-star-duration-wrapper" bis_skin_checked="1">
             <div class="lp-v2-testimonial-stars" bis_skin_checked="1">
