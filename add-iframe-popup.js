@@ -107,7 +107,7 @@ const addIframePopup = function ({
   redirectURL = "https://app.shvasa.com/dashboard?widget=loginpopup",
   allowCameraMic = false,
   packageId = "67ea76adea89798f74a19b4a",
-  signLabel = "Start%20your%203-day%20free%20trial",
+  signLabel = "Start%20your%20free%20trial",
 } = {}) {
   const allBtns = [...document.querySelectorAll(targetEl)];
   if (!popupRequired || allBtns.length === 0) return;
