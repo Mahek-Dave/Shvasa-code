@@ -1,3 +1,6 @@
+const playButtons = document.getElementsByClassName("video-play-btn"),
+  playButtonsArr = Array.from(playButtons);
+
 playButtonsArr.forEach((btn) => {
   btn.addEventListener("click", function () {
     const videoSrc = btn.dataset.src;
