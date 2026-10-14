@@ -539,7 +539,6 @@
                   class="primary-button size-small bg-color-accent-tropical-teal-600 ${s ? 'bg-color-accent-red' : ''}"
                   data-class-booking-btn=""
                 >
-                // <a href="https://app.shvasa.com/book-class?classId=${e?.id}&teacher=${e?.teacherInfo?.name}&time=${e?.classDateTime}${i?"":"&packageId=67ea76adea89798f74a19b4a&signLabel=Book%20a%20Free%20Class"}" class="primary-button size-small bg-color-accent-tropical-teal-600 ${s?"bg-color-accent-red":""}" data-class-booking-btn="">
                   <div data-b5="" class="b5 semi-bold color-white">
                     ${s ? "Join" : "Book"}
                   </div>
