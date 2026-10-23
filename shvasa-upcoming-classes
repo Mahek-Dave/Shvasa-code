@@ -1,3 +1,20 @@
+const FORWARD_PARAMS = ["utm_source","utm_medium","utm_campaign","utm_term","utm_content","gclid","fbclid"];
+
+const bookingUrl = (cls, isLp = false) => {
+  const qs = new URLSearchParams();
+  qs.set("classId", cls.id);
+  qs.set("teacher", cls.teacherInfo?.name ?? "");
+  qs.set("time", cls.classDateTime);
+  if (!isLp) {
+    qs.set("signLabel", "Book a Free Class");
+    qs.set("packageId", "67ea76adea89798f74a19b4a");
+  }
+  const here = new URLSearchParams(location.search);
+  FORWARD_PARAMS.forEach((k) => here.has(k) && qs.set(k, here.get(k)));
+  return ("https://app.shvasa.com/book-class?" + qs.toString().replace(/\+/g, "%20"))
+    .replace(/&/g, "&amp;");
+};
+
 // SHOW UPCOMING CLASSES //
 
 // currentDate
@@ -46,14 +63,11 @@ console.log(selectedDate);
 // Fetch classes Data
 const tillDate = new Date();
 tillDate.setDate(tillDate.getDate() + 5);
-const authToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWY4Y2FiN2UyY2ZmNDE1MmQ4YjZkMTciLCJlbWFpbCI6ImFkbWluQHNodmFzYS5jb20iLCJyb2xlIjpbMjA0NV0sImlhdCI6MTY3ODM1NzMxMn0.TfViPmCNEGSmaI6g19eCapva0y7kTEnaee_AMSrEdhU";
 
 const url = "https://services.shvasa.com/api/product/getGroupClassesForWebflow";
 
 const headers = {
   "Content-Type": "application/json",
-  Authorization: `token ${authToken}`,
 };
 
 const body = {
@@ -128,7 +142,7 @@ const showClasses = function (selectedDate) {
           <div>by ${item?.teacherInfo.name}</div>
           <div class="cta-spots-details">
             <a
-              href="https://app.shvasa.com/book-class?classId=${item?.id}&teacher=${item?.teacherInfo?.name}&time=${item?.classDateTime}${urlParanew}&signLabel=Book%20a%20Free%20Class&packageId=67ea76adea89798f74a19b4a"
+              href="${bookingUrl(item, false)}" rel="nofollow"
               class="upcoming-class-book-btn w-button"
               >Book Class</a
             >
