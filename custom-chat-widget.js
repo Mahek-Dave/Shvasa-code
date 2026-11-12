@@ -256,7 +256,7 @@ window.addEventListener('load', function() {
 
             @media (max-width: 480px) {
 			    .chat-widget {
-			        bottom: 70px;
+			        bottom: 65px;
 			        right: 20px;
 			    }
 				
