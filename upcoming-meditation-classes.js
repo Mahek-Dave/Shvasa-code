@@ -534,7 +534,7 @@
             <div id="w-node-_3bb0c6c2-99bb-f448-e7c6-9c2c86184fc3-a152fdd6" class="class-booking-btn-wrapper">
                 <a
                   href="#"
-                  data-track="face-yoga-popup-CTA"
+                  data-track="meditation-popup-CTA"
                   data-show="fixed-form"
                   class="primary-button size-small bg-color-accent-tropical-teal-600 ${s ? 'bg-color-accent-red' : ''}"
                   data-class-booking-btn=""
